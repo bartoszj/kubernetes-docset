@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>CFBundleIdentifier</key>
+    <string>kubernetes</string>
+    <key>CFBundleName</key>
+    <string>kubernetes</string>
+    <key>DashDocSetKeyword</key>
+    <string>kubernetes</string>
+    <key>DashDocSetPluginKeyword</key>
+    <string>kubernetes</string>
+    <key>DocSetPlatformFamily</key>
+    <string>kubernetes</string>
+    <key>dashIndexFilePath</key>
+    <string>api-reference/v1/definitions.html</string>
+    <key>isDashDocset</key>
+    <true/>
+    <key>isJavaScriptEnabled</key>
+    <true/>
+</dict>
+</plist>
