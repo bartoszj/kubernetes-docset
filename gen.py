@@ -1,12 +1,39 @@
 #!/usr/local/bin/python2
 
-import os, re, sqlite3
-from bs4 import BeautifulSoup, NavigableString, Tag
+import os
+import re
+import sqlite3
+from bs4 import BeautifulSoup
 
-docpath = 'Documents/api-reference'
+DOC_API_REFERENCE = 'Documents/api-reference'
+
+
+def fix_links(filename):
+    doc_path = os.path.join(DOC_API_REFERENCE, filename)
+    changed_content = None
+
+    with open(doc_path) as doc:
+        soup = BeautifulSoup(doc, "html.parser")
+
+        def find_definitions(href):
+            return href.startswith("../definitions#")
+
+        changed = False
+        a_tags = soup.find_all("a", href=find_definitions)
+        for a in a_tags:
+            changed = True
+            a["href"] = a["href"].replace("../definitions#", "definitions.html#")
+
+        if changed:
+            changed_content = str(soup)
+
+    if changed_content is not None:
+        with open(doc_path, "w") as f:
+            f.write(changed_content)
+
 
 def gen_index(cur, filename, typ):
-    doc = open(os.path.join(docpath, filename))
+    doc = open(os.path.join(DOC_API_REFERENCE, filename))
     soup = BeautifulSoup(doc, "html.parser")
     group, version = parse_group_version_from_filename(filename)
 
@@ -22,11 +49,12 @@ def gen_index(cur, filename, typ):
         except:
             continue
 
+
 def iterate_dir(dir_name):
     files = []
-    for tp in os.walk(docpath):
-        if len(tp[1]) == 0:
-            files.extend([os.path.join(tp[0], i) for i in tp[2]])
+    for dir_path, dir_names, file_names in os.walk(dir_name):
+        if len(dir_names) == 0:
+            files.extend([os.path.join(dir_path, i) for i in file_names])
     return files
 
 
@@ -55,14 +83,15 @@ def main():
     cur.execute('CREATE TABLE searchIndex(id INTEGER PRIMARY KEY, name TEXT, type TEXT, path TEXT);')
     cur.execute('CREATE UNIQUE INDEX anchor ON searchIndex (name, type, path);')
 
-    for filename in iterate_dir(docpath):
-        #gen_index("v1/operations.html", "Interface")
-        relpath = filename[len(docpath)+1:]
-        if relpath.endswith("definitions.html"):
-            gen_index(cur, relpath, "Type")
-        elif relpath.endswith("operations.html"):
-            gen_index(cur, relpath, "Interface")
+    for filename in iterate_dir(DOC_API_REFERENCE):
+        relative_path = filename[len(DOC_API_REFERENCE) + 1:]
+        if relative_path.endswith("definitions.html"):
+            gen_index(cur, relative_path, "Type")
+        elif relative_path.endswith("operations.html"):
+            fix_links(relative_path)
+            gen_index(cur, relative_path, "Interface")
 
+    cur.execute("VACUUM;")
     db.commit()
     db.close()
 
