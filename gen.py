@@ -1,9 +1,9 @@
-#!/usr/local/bin/python2
+#!/usr/local/bin/python3
 
 import os
-import re
 import sqlite3
 from bs4 import BeautifulSoup
+
 
 DOC_API_REFERENCE = 'Documents/api-reference'
 
@@ -91,8 +91,8 @@ def main():
             fix_links(relative_path)
             gen_index(cur, relative_path, "Interface")
 
-    cur.execute("VACUUM;")
     db.commit()
+    cur.execute("VACUUM;")
     db.close()
 
 

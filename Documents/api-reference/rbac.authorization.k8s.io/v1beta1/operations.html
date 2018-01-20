@@ -1,9 +1,10 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta name="generator" content="Asciidoctor 0.1.4">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<meta content="Asciidoctor 0.1.4" name="generator"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>Operations</title>
 <style>
 /* Asciidoctor default stylesheet | MIT License | http://asciidoctor.org */
@@ -378,9 +379,9 @@ span.icon > [class^="icon-"], span.icon > [class*=" icon-"] { cursor: default; }
 <h4 id="_responses">Responses</h4>
 <table class="tableblock frame-all grid-all" style="width:100%; ">
 <colgroup>
-<col style="width:33%;">
-<col style="width:33%;">
-<col style="width:33%;"> 
+<col style="width:33%;"/>
+<col style="width:33%;"/>
+<col style="width:33%;"/>
 </colgroup>
 <thead>
 <tr>
@@ -393,11 +394,10 @@ span.icon > [class^="icon-"], span.icon > [class*=" icon-"] { cursor: default; }
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">default</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">success</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="../definitions#_v1_apiresourcelist">v1.APIResourceList</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="definitions.html#_v1_apiresourcelist">v1.APIResourceList</a></p></td>
 </tr>
 </tbody>
 </table>
-
 </div>
 <div class="sect3">
 <h4 id="_consumes">Consumes</h4>
@@ -453,12 +453,12 @@ span.icon > [class^="icon-"], span.icon > [class*=" icon-"] { cursor: default; }
 <h4 id="_parameters">Parameters</h4>
 <table class="tableblock frame-all grid-all" style="width:100%; ">
 <colgroup>
-<col style="width:16%;">
-<col style="width:16%;">
-<col style="width:16%;">
-<col style="width:16%;">
-<col style="width:16%;">
-<col style="width:16%;"> 
+<col style="width:16%;"/>
+<col style="width:16%;"/>
+<col style="width:16%;"/>
+<col style="width:16%;"/>
+<col style="width:16%;"/>
+<col style="width:16%;"/>
 </colgroup>
 <thead>
 <tr>
@@ -514,7 +514,7 @@ span.icon > [class^="icon-"], span.icon > [class*=" icon-"] { cursor: default; }
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">QueryParameter</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">resourceVersion</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">When specified with a watch call, shows changes that occur after that particular version of a resource. Defaults to changes from the beginning of history. When specified for list: - if unset, then the result is returned from remote storage based on quorum-read flag; - if it&#8217;s 0, then we simply return what we currently have in cache, no guarantee; - if set to non zero, then the result is at least as fresh as given rv.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">When specified with a watch call, shows changes that occur after that particular version of a resource. Defaults to changes from the beginning of history. When specified for list: - if unset, then the result is returned from remote storage based on quorum-read flag; - if it’s 0, then we simply return what we currently have in cache, no guarantee; - if set to non zero, then the result is at least as fresh as given rv.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">false</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
 <td class="tableblock halign-left valign-top"></td>
@@ -527,17 +527,33 @@ span.icon > [class^="icon-"], span.icon > [class*=" icon-"] { cursor: default; }
 <td class="tableblock halign-left valign-top"><p class="tableblock">integer (int32)</p></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">QueryParameter</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">limit</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">limit is a maximum number of responses to return for a list call. If more items exist, the server will set the <code>continue</code> field on the list metadata to a value that can be used with the same initial query to retrieve the next set of results. Setting a limit may return fewer than the requested amount of items (up to zero items) in the event all requested objects are filtered out and clients should only use the presence of the continue field to determine whether more results are available. Servers may choose not to support the limit argument and will return all of the available results. If limit is specified and the continue field is empty, clients may assume that no more results are available. This field is not supported if watch is true.
+</p><p class="tableblock">The server guarantees that the objects returned when using continue will be identical to issuing a single list call without a limit - that is, no objects created, modified, or deleted after the first request is issued will be included in any subsequent continued requests. This is sometimes referred to as a consistent snapshot, and ensures that a client that is using limit to receive smaller chunks of a very large result can ensure they see all possible objects. If objects are updated during a chunked list the version of the object that was present at the time the first list result was calculated is returned.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">false</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">integer (int32)</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">QueryParameter</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">continue</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The continue option should be set when retrieving more results from the server. Since this value is server defined, clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server the server will respond with a 410 ResourceExpired error indicating the client must restart their list without the continue field. This field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">false</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
 </tbody>
 </table>
-
 </div>
 <div class="sect3">
 <h4 id="_responses_2">Responses</h4>
 <table class="tableblock frame-all grid-all" style="width:100%; ">
 <colgroup>
-<col style="width:33%;">
-<col style="width:33%;">
-<col style="width:33%;"> 
+<col style="width:33%;"/>
+<col style="width:33%;"/>
+<col style="width:33%;"/>
 </colgroup>
 <thead>
 <tr>
@@ -550,11 +566,10 @@ span.icon > [class^="icon-"], span.icon > [class*=" icon-"] { cursor: default; }
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">200</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">success</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="../definitions#_v1beta1_clusterrolebindinglist">v1beta1.ClusterRoleBindingList</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="definitions.html#_v1beta1_clusterrolebindinglist">v1beta1.ClusterRoleBindingList</a></p></td>
 </tr>
 </tbody>
 </table>
-
 </div>
 <div class="sect3">
 <h4 id="_consumes_2">Consumes</h4>
@@ -610,12 +625,12 @@ span.icon > [class^="icon-"], span.icon > [class*=" icon-"] { cursor: default; }
 <h4 id="_parameters_2">Parameters</h4>
 <table class="tableblock frame-all grid-all" style="width:100%; ">
 <colgroup>
-<col style="width:16%;">
-<col style="width:16%;">
-<col style="width:16%;">
-<col style="width:16%;">
-<col style="width:16%;">
-<col style="width:16%;"> 
+<col style="width:16%;"/>
+<col style="width:16%;"/>
+<col style="width:16%;"/>
+<col style="width:16%;"/>
+<col style="width:16%;"/>
+<col style="width:16%;"/>
 </colgroup>
 <thead>
 <tr>
@@ -671,7 +686,7 @@ span.icon > [class^="icon-"], span.icon > [class*=" icon-"] { cursor: default; }
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">QueryParameter</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">resourceVersion</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">When specified with a watch call, shows changes that occur after that particular version of a resource. Defaults to changes from the beginning of history. When specified for list: - if unset, then the result is returned from remote storage based on quorum-read flag; - if it&#8217;s 0, then we simply return what we currently have in cache, no guarantee; - if set to non zero, then the result is at least as fresh as given rv.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">When specified with a watch call, shows changes that occur after that particular version of a resource. Defaults to changes from the beginning of history. When specified for list: - if unset, then the result is returned from remote storage based on quorum-read flag; - if it’s 0, then we simply return what we currently have in cache, no guarantee; - if set to non zero, then the result is at least as fresh as given rv.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">false</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
 <td class="tableblock halign-left valign-top"></td>
@@ -684,17 +699,33 @@ span.icon > [class^="icon-"], span.icon > [class*=" icon-"] { cursor: default; }
 <td class="tableblock halign-left valign-top"><p class="tableblock">integer (int32)</p></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">QueryParameter</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">limit</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">limit is a maximum number of responses to return for a list call. If more items exist, the server will set the <code>continue</code> field on the list metadata to a value that can be used with the same initial query to retrieve the next set of results. Setting a limit may return fewer than the requested amount of items (up to zero items) in the event all requested objects are filtered out and clients should only use the presence of the continue field to determine whether more results are available. Servers may choose not to support the limit argument and will return all of the available results. If limit is specified and the continue field is empty, clients may assume that no more results are available. This field is not supported if watch is true.
+</p><p class="tableblock">The server guarantees that the objects returned when using continue will be identical to issuing a single list call without a limit - that is, no objects created, modified, or deleted after the first request is issued will be included in any subsequent continued requests. This is sometimes referred to as a consistent snapshot, and ensures that a client that is using limit to receive smaller chunks of a very large result can ensure they see all possible objects. If objects are updated during a chunked list the version of the object that was present at the time the first list result was calculated is returned.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">false</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">integer (int32)</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">QueryParameter</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">continue</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The continue option should be set when retrieving more results from the server. Since this value is server defined, clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server the server will respond with a 410 ResourceExpired error indicating the client must restart their list without the continue field. This field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">false</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
 </tbody>
 </table>
-
 </div>
 <div class="sect3">
 <h4 id="_responses_3">Responses</h4>
 <table class="tableblock frame-all grid-all" style="width:100%; ">
 <colgroup>
-<col style="width:33%;">
-<col style="width:33%;">
-<col style="width:33%;"> 
+<col style="width:33%;"/>
+<col style="width:33%;"/>
+<col style="width:33%;"/>
 </colgroup>
 <thead>
 <tr>
@@ -707,11 +738,10 @@ span.icon > [class^="icon-"], span.icon > [class*=" icon-"] { cursor: default; }
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">200</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">success</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="../definitions#_v1_status">v1.Status</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="definitions.html#_v1_status">v1.Status</a></p></td>
 </tr>
 </tbody>
 </table>
-
 </div>
 <div class="sect3">
 <h4 id="_consumes_3">Consumes</h4>
@@ -761,12 +791,12 @@ span.icon > [class^="icon-"], span.icon > [class*=" icon-"] { cursor: default; }
 <h4 id="_parameters_3">Parameters</h4>
 <table class="tableblock frame-all grid-all" style="width:100%; ">
 <colgroup>
-<col style="width:16%;">
-<col style="width:16%;">
-<col style="width:16%;">
-<col style="width:16%;">
-<col style="width:16%;">
-<col style="width:16%;"> 
+<col style="width:16%;"/>
+<col style="width:16%;"/>
+<col style="width:16%;"/>
+<col style="width:16%;"/>
+<col style="width:16%;"/>
+<col style="width:16%;"/>
 </colgroup>
 <thead>
 <tr>
@@ -792,20 +822,19 @@ span.icon > [class^="icon-"], span.icon > [class*=" icon-"] { cursor: default; }
 <td class="tableblock halign-left valign-top"><p class="tableblock">body</p></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">true</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="../definitions#_v1beta1_clusterrolebinding">v1beta1.ClusterRoleBinding</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="definitions.html#_v1beta1_clusterrolebinding">v1beta1.ClusterRoleBinding</a></p></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 </tbody>
 </table>
-
 </div>
 <div class="sect3">
 <h4 id="_responses_4">Responses</h4>
 <table class="tableblock frame-all grid-all" style="width:100%; ">
 <colgroup>
-<col style="width:33%;">
-<col style="width:33%;">
-<col style="width:33%;"> 
+<col style="width:33%;"/>
+<col style="width:33%;"/>
+<col style="width:33%;"/>
 </colgroup>
 <thead>
 <tr>
@@ -816,13 +845,22 @@ span.icon > [class^="icon-"], span.icon > [class*=" icon-"] { cursor: default; }
 </thead>
 <tbody>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">202</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Accepted</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="definitions.html#_v1beta1_clusterrolebinding">v1beta1.ClusterRoleBinding</a></p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">200</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">success</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="../definitions#_v1beta1_clusterrolebinding">v1beta1.ClusterRoleBinding</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="definitions.html#_v1beta1_clusterrolebinding">v1beta1.ClusterRoleBinding</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">201</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Created</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="definitions.html#_v1beta1_clusterrolebinding">v1beta1.ClusterRoleBinding</a></p></td>
 </tr>
 </tbody>
 </table>
-
 </div>
 <div class="sect3">
 <h4 id="_consumes_4">Consumes</h4>
@@ -872,12 +910,12 @@ span.icon > [class^="icon-"], span.icon > [class*=" icon-"] { cursor: default; }
 <h4 id="_parameters_4">Parameters</h4>
 <table class="tableblock frame-all grid-all" style="width:100%; ">
 <colgroup>
-<col style="width:16%;">
-<col style="width:16%;">
-<col style="width:16%;">
-<col style="width:16%;">
-<col style="width:16%;">
-<col style="width:16%;"> 
+<col style="width:16%;"/>
+<col style="width:16%;"/>
+<col style="width:16%;"/>
+<col style="width:16%;"/>
+<col style="width:16%;"/>
+<col style="width:16%;"/>
 </colgroup>
 <thead>
 <tr>
@@ -908,15 +946,14 @@ span.icon > [class^="icon-"], span.icon > [class*=" icon-"] { cursor: default; }
 </tr>
 </tbody>
 </table>
-
 </div>
 <div class="sect3">
 <h4 id="_responses_5">Responses</h4>
 <table class="tableblock frame-all grid-all" style="width:100%; ">
 <colgroup>
-<col style="width:33%;">
-<col style="width:33%;">
-<col style="width:33%;"> 
+<col style="width:33%;"/>
+<col style="width:33%;"/>
+<col style="width:33%;"/>
 </colgroup>
 <thead>
 <tr>
@@ -929,11 +966,10 @@ span.icon > [class^="icon-"], span.icon > [class*=" icon-"] { cursor: default; }
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">200</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">success</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="../definitions#_v1beta1_clusterrolebinding">v1beta1.ClusterRoleBinding</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="definitions.html#_v1beta1_clusterrolebinding">v1beta1.ClusterRoleBinding</a></p></td>
 </tr>
 </tbody>
 </table>
-
 </div>
 <div class="sect3">
 <h4 id="_consumes_5">Consumes</h4>
@@ -983,12 +1019,12 @@ span.icon > [class^="icon-"], span.icon > [class*=" icon-"] { cursor: default; }
 <h4 id="_parameters_5">Parameters</h4>
 <table class="tableblock frame-all grid-all" style="width:100%; ">
 <colgroup>
-<col style="width:16%;">
-<col style="width:16%;">
-<col style="width:16%;">
-<col style="width:16%;">
-<col style="width:16%;">
-<col style="width:16%;"> 
+<col style="width:16%;"/>
+<col style="width:16%;"/>
+<col style="width:16%;"/>
+<col style="width:16%;"/>
+<col style="width:16%;"/>
+<col style="width:16%;"/>
 </colgroup>
 <thead>
 <tr>
@@ -1014,7 +1050,7 @@ span.icon > [class^="icon-"], span.icon > [class*=" icon-"] { cursor: default; }
 <td class="tableblock halign-left valign-top"><p class="tableblock">body</p></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">true</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="../definitions#_v1beta1_clusterrolebinding">v1beta1.ClusterRoleBinding</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="definitions.html#_v1beta1_clusterrolebinding">v1beta1.ClusterRoleBinding</a></p></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
@@ -1027,15 +1063,14 @@ span.icon > [class^="icon-"], span.icon > [class*=" icon-"] { cursor: default; }
 </tr>
 </tbody>
 </table>
-
 </div>
 <div class="sect3">
 <h4 id="_responses_6">Responses</h4>
 <table class="tableblock frame-all grid-all" style="width:100%; ">
 <colgroup>
-<col style="width:33%;">
-<col style="width:33%;">
-<col style="width:33%;"> 
+<col style="width:33%;"/>
+<col style="width:33%;"/>
+<col style="width:33%;"/>
 </colgroup>
 <thead>
 <tr>
@@ -1048,11 +1083,15 @@ span.icon > [class^="icon-"], span.icon > [class*=" icon-"] { cursor: default; }
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">200</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">success</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="../definitions#_v1beta1_clusterrolebinding">v1beta1.ClusterRoleBinding</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="definitions.html#_v1beta1_clusterrolebinding">v1beta1.ClusterRoleBinding</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">201</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Created</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="definitions.html#_v1beta1_clusterrolebinding">v1beta1.ClusterRoleBinding</a></p></td>
 </tr>
 </tbody>
 </table>
-
 </div>
 <div class="sect3">
 <h4 id="_consumes_6">Consumes</h4>
@@ -1102,12 +1141,12 @@ span.icon > [class^="icon-"], span.icon > [class*=" icon-"] { cursor: default; }
 <h4 id="_parameters_6">Parameters</h4>
 <table class="tableblock frame-all grid-all" style="width:100%; ">
 <colgroup>
-<col style="width:16%;">
-<col style="width:16%;">
-<col style="width:16%;">
-<col style="width:16%;">
-<col style="width:16%;">
-<col style="width:16%;"> 
+<col style="width:16%;"/>
+<col style="width:16%;"/>
+<col style="width:16%;"/>
+<col style="width:16%;"/>
+<col style="width:16%;"/>
+<col style="width:16%;"/>
 </colgroup>
 <thead>
 <tr>
@@ -1133,7 +1172,7 @@ span.icon > [class^="icon-"], span.icon > [class*=" icon-"] { cursor: default; }
 <td class="tableblock halign-left valign-top"><p class="tableblock">body</p></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">true</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="../definitions#_v1_deleteoptions">v1.DeleteOptions</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="definitions.html#_v1_deleteoptions">v1.DeleteOptions</a></p></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
@@ -1147,7 +1186,7 @@ span.icon > [class^="icon-"], span.icon > [class*=" icon-"] { cursor: default; }
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">QueryParameter</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">orphanDependents</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the "orphan" finalizer will be added to/removed from the object&#8217;s finalizers list. Either this field or PropagationPolicy may be set, but not both.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the "orphan" finalizer will be added to/removed from the object’s finalizers list. Either this field or PropagationPolicy may be set, but not both.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">false</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">boolean</p></td>
 <td class="tableblock halign-left valign-top"></td>
@@ -1155,7 +1194,7 @@ span.icon > [class^="icon-"], span.icon > [class*=" icon-"] { cursor: default; }
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">QueryParameter</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">propagationPolicy</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: <em>Orphan</em> - orphan the dependents; <em>Background</em> - allow the garbage collector to delete the dependents in the background; <em>Foreground</em> - a cascading policy that deletes all dependents in the foreground.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">false</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
 <td class="tableblock halign-left valign-top"></td>
@@ -1170,15 +1209,14 @@ span.icon > [class^="icon-"], span.icon > [class*=" icon-"] { cursor: default; }
 </tr>
 </tbody>
 </table>
-
 </div>
 <div class="sect3">
 <h4 id="_responses_7">Responses</h4>
 <table class="tableblock frame-all grid-all" style="width:100%; ">
 <colgroup>
-<col style="width:33%;">
-<col style="width:33%;">
-<col style="width:33%;"> 
+<col style="width:33%;"/>
+<col style="width:33%;"/>
+<col style="width:33%;"/>
 </colgroup>
 <thead>
 <tr>
@@ -1191,11 +1229,10 @@ span.icon > [class^="icon-"], span.icon > [class*=" icon-"] { cursor: default; }
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">200</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">success</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="../definitions#_v1_status">v1.Status</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="definitions.html#_v1_status">v1.Status</a></p></td>
 </tr>
 </tbody>
 </table>
-
 </div>
 <div class="sect3">
 <h4 id="_consumes_7">Consumes</h4>
@@ -1245,12 +1282,12 @@ span.icon > [class^="icon-"], span.icon > [class*=" icon-"] { cursor: default; }
 <h4 id="_parameters_7">Parameters</h4>
 <table class="tableblock frame-all grid-all" style="width:100%; ">
 <colgroup>
-<col style="width:16%;">
-<col style="width:16%;">
-<col style="width:16%;">
-<col style="width:16%;">
-<col style="width:16%;">
-<col style="width:16%;"> 
+<col style="width:16%;"/>
+<col style="width:16%;"/>
+<col style="width:16%;"/>
+<col style="width:16%;"/>
+<col style="width:16%;"/>
+<col style="width:16%;"/>
 </colgroup>
 <thead>
 <tr>
@@ -1276,7 +1313,7 @@ span.icon > [class^="icon-"], span.icon > [class*=" icon-"] { cursor: default; }
 <td class="tableblock halign-left valign-top"><p class="tableblock">body</p></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">true</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="../definitions#_v1_patch">v1.Patch</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="definitions.html#_v1_patch">v1.Patch</a></p></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
@@ -1289,15 +1326,14 @@ span.icon > [class^="icon-"], span.icon > [class*=" icon-"] { cursor: default; }
 </tr>
 </tbody>
 </table>
-
 </div>
 <div class="sect3">
 <h4 id="_responses_8">Responses</h4>
 <table class="tableblock frame-all grid-all" style="width:100%; ">
 <colgroup>
-<col style="width:33%;">
-<col style="width:33%;">
-<col style="width:33%;"> 
+<col style="width:33%;"/>
+<col style="width:33%;"/>
+<col style="width:33%;"/>
 </colgroup>
 <thead>
 <tr>
@@ -1310,11 +1346,10 @@ span.icon > [class^="icon-"], span.icon > [class*=" icon-"] { cursor: default; }
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">200</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">success</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="../definitions#_v1beta1_clusterrolebinding">v1beta1.ClusterRoleBinding</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="definitions.html#_v1beta1_clusterrolebinding">v1beta1.ClusterRoleBinding</a></p></td>
 </tr>
 </tbody>
 </table>
-
 </div>
 <div class="sect3">
 <h4 id="_consumes_8">Consumes</h4>
@@ -1370,12 +1405,12 @@ span.icon > [class^="icon-"], span.icon > [class*=" icon-"] { cursor: default; }
 <h4 id="_parameters_8">Parameters</h4>
 <table class="tableblock frame-all grid-all" style="width:100%; ">
 <colgroup>
-<col style="width:16%;">
-<col style="width:16%;">
-<col style="width:16%;">
-<col style="width:16%;">
-<col style="width:16%;">
-<col style="width:16%;"> 
+<col style="width:16%;"/>
+<col style="width:16%;"/>
+<col style="width:16%;"/>
+<col style="width:16%;"/>
+<col style="width:16%;"/>
+<col style="width:16%;"/>
 </colgroup>
 <thead>
 <tr>
@@ -1431,7 +1466,7 @@ span.icon > [class^="icon-"], span.icon > [class*=" icon-"] { cursor: default; }
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">QueryParameter</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">resourceVersion</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">When specified with a watch call, shows changes that occur after that particular version of a resource. Defaults to changes from the beginning of history. When specified for list: - if unset, then the result is returned from remote storage based on quorum-read flag; - if it&#8217;s 0, then we simply return what we currently have in cache, no guarantee; - if set to non zero, then the result is at least as fresh as given rv.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">When specified with a watch call, shows changes that occur after that particular version of a resource. Defaults to changes from the beginning of history. When specified for list: - if unset, then the result is returned from remote storage based on quorum-read flag; - if it’s 0, then we simply return what we currently have in cache, no guarantee; - if set to non zero, then the result is at least as fresh as given rv.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">false</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
 <td class="tableblock halign-left valign-top"></td>
@@ -1444,17 +1479,33 @@ span.icon > [class^="icon-"], span.icon > [class*=" icon-"] { cursor: default; }
 <td class="tableblock halign-left valign-top"><p class="tableblock">integer (int32)</p></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">QueryParameter</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">limit</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">limit is a maximum number of responses to return for a list call. If more items exist, the server will set the <code>continue</code> field on the list metadata to a value that can be used with the same initial query to retrieve the next set of results. Setting a limit may return fewer than the requested amount of items (up to zero items) in the event all requested objects are filtered out and clients should only use the presence of the continue field to determine whether more results are available. Servers may choose not to support the limit argument and will return all of the available results. If limit is specified and the continue field is empty, clients may assume that no more results are available. This field is not supported if watch is true.
+</p><p class="tableblock">The server guarantees that the objects returned when using continue will be identical to issuing a single list call without a limit - that is, no objects created, modified, or deleted after the first request is issued will be included in any subsequent continued requests. This is sometimes referred to as a consistent snapshot, and ensures that a client that is using limit to receive smaller chunks of a very large result can ensure they see all possible objects. If objects are updated during a chunked list the version of the object that was present at the time the first list result was calculated is returned.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">false</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">integer (int32)</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">QueryParameter</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">continue</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The continue option should be set when retrieving more results from the server. Since this value is server defined, clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server the server will respond with a 410 ResourceExpired error indicating the client must restart their list without the continue field. This field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">false</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
 </tbody>
 </table>
-
 </div>
 <div class="sect3">
 <h4 id="_responses_9">Responses</h4>
 <table class="tableblock frame-all grid-all" style="width:100%; ">
 <colgroup>
-<col style="width:33%;">
-<col style="width:33%;">
-<col style="width:33%;"> 
+<col style="width:33%;"/>
+<col style="width:33%;"/>
+<col style="width:33%;"/>
 </colgroup>
 <thead>
 <tr>
@@ -1467,11 +1518,10 @@ span.icon > [class^="icon-"], span.icon > [class*=" icon-"] { cursor: default; }
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">200</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">success</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="../definitions#_v1beta1_clusterrolelist">v1beta1.ClusterRoleList</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="definitions.html#_v1beta1_clusterrolelist">v1beta1.ClusterRoleList</a></p></td>
 </tr>
 </tbody>
 </table>
-
 </div>
 <div class="sect3">
 <h4 id="_consumes_9">Consumes</h4>
@@ -1527,12 +1577,12 @@ span.icon > [class^="icon-"], span.icon > [class*=" icon-"] { cursor: default; }
 <h4 id="_parameters_9">Parameters</h4>
 <table class="tableblock frame-all grid-all" style="width:100%; ">
 <colgroup>
-<col style="width:16%;">
-<col style="width:16%;">
-<col style="width:16%;">
-<col style="width:16%;">
-<col style="width:16%;">
-<col style="width:16%;"> 
+<col style="width:16%;"/>
+<col style="width:16%;"/>
+<col style="width:16%;"/>
+<col style="width:16%;"/>
+<col style="width:16%;"/>
+<col style="width:16%;"/>
 </colgroup>
 <thead>
 <tr>
@@ -1588,7 +1638,7 @@ span.icon > [class^="icon-"], span.icon > [class*=" icon-"] { cursor: default; }
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">QueryParameter</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">resourceVersion</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">When specified with a watch call, shows changes that occur after that particular version of a resource. Defaults to changes from the beginning of history. When specified for list: - if unset, then the result is returned from remote storage based on quorum-read flag; - if it&#8217;s 0, then we simply return what we currently have in cache, no guarantee; - if set to non zero, then the result is at least as fresh as given rv.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">When specified with a watch call, shows changes that occur after that particular version of a resource. Defaults to changes from the beginning of history. When specified for list: - if unset, then the result is returned from remote storage based on quorum-read flag; - if it’s 0, then we simply return what we currently have in cache, no guarantee; - if set to non zero, then the result is at least as fresh as given rv.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">false</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
 <td class="tableblock halign-left valign-top"></td>
@@ -1601,17 +1651,33 @@ span.icon > [class^="icon-"], span.icon > [class*=" icon-"] { cursor: default; }
 <td class="tableblock halign-left valign-top"><p class="tableblock">integer (int32)</p></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">QueryParameter</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">limit</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">limit is a maximum number of responses to return for a list call. If more items exist, the server will set the <code>continue</code> field on the list metadata to a value that can be used with the same initial query to retrieve the next set of results. Setting a limit may return fewer than the requested amount of items (up to zero items) in the event all requested objects are filtered out and clients should only use the presence of the continue field to determine whether more results are available. Servers may choose not to support the limit argument and will return all of the available results. If limit is specified and the continue field is empty, clients may assume that no more results are available. This field is not supported if watch is true.
+</p><p class="tableblock">The server guarantees that the objects returned when using continue will be identical to issuing a single list call without a limit - that is, no objects created, modified, or deleted after the first request is issued will be included in any subsequent continued requests. This is sometimes referred to as a consistent snapshot, and ensures that a client that is using limit to receive smaller chunks of a very large result can ensure they see all possible objects. If objects are updated during a chunked list the version of the object that was present at the time the first list result was calculated is returned.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">false</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">integer (int32)</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">QueryParameter</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">continue</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The continue option should be set when retrieving more results from the server. Since this value is server defined, clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server the server will respond with a 410 ResourceExpired error indicating the client must restart their list without the continue field. This field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">false</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
 </tbody>
 </table>
-
 </div>
 <div class="sect3">
 <h4 id="_responses_10">Responses</h4>
 <table class="tableblock frame-all grid-all" style="width:100%; ">
 <colgroup>
-<col style="width:33%;">
-<col style="width:33%;">
-<col style="width:33%;"> 
+<col style="width:33%;"/>
+<col style="width:33%;"/>
+<col style="width:33%;"/>
 </colgroup>
 <thead>
 <tr>
@@ -1624,11 +1690,10 @@ span.icon > [class^="icon-"], span.icon > [class*=" icon-"] { cursor: default; }
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">200</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">success</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="../definitions#_v1_status">v1.Status</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="definitions.html#_v1_status">v1.Status</a></p></td>
 </tr>
 </tbody>
 </table>
-
 </div>
 <div class="sect3">
 <h4 id="_consumes_10">Consumes</h4>
@@ -1678,12 +1743,12 @@ span.icon > [class^="icon-"], span.icon > [class*=" icon-"] { cursor: default; }
 <h4 id="_parameters_10">Parameters</h4>
 <table class="tableblock frame-all grid-all" style="width:100%; ">
 <colgroup>
-<col style="width:16%;">
-<col style="width:16%;">
-<col style="width:16%;">
-<col style="width:16%;">
-<col style="width:16%;">
-<col style="width:16%;"> 
+<col style="width:16%;"/>
+<col style="width:16%;"/>
+<col style="width:16%;"/>
+<col style="width:16%;"/>
+<col style="width:16%;"/>
+<col style="width:16%;"/>
 </colgroup>
 <thead>
 <tr>
@@ -1709,20 +1774,19 @@ span.icon > [class^="icon-"], span.icon > [class*=" icon-"] { cursor: default; }
 <td class="tableblock halign-left valign-top"><p class="tableblock">body</p></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">true</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="../definitions#_v1beta1_clusterrole">v1beta1.ClusterRole</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="definitions.html#_v1beta1_clusterrole">v1beta1.ClusterRole</a></p></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 </tbody>
 </table>
-
 </div>
 <div class="sect3">
 <h4 id="_responses_11">Responses</h4>
 <table class="tableblock frame-all grid-all" style="width:100%; ">
 <colgroup>
-<col style="width:33%;">
-<col style="width:33%;">
-<col style="width:33%;"> 
+<col style="width:33%;"/>
+<col style="width:33%;"/>
+<col style="width:33%;"/>
 </colgroup>
 <thead>
 <tr>
@@ -1733,13 +1797,22 @@ span.icon > [class^="icon-"], span.icon > [class*=" icon-"] { cursor: default; }
 </thead>
 <tbody>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">202</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Accepted</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="definitions.html#_v1beta1_clusterrole">v1beta1.ClusterRole</a></p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">200</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">success</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="../definitions#_v1beta1_clusterrole">v1beta1.ClusterRole</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="definitions.html#_v1beta1_clusterrole">v1beta1.ClusterRole</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">201</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Created</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="definitions.html#_v1beta1_clusterrole">v1beta1.ClusterRole</a></p></td>
 </tr>
 </tbody>
 </table>
-
 </div>
 <div class="sect3">
 <h4 id="_consumes_11">Consumes</h4>
@@ -1789,12 +1862,12 @@ span.icon > [class^="icon-"], span.icon > [class*=" icon-"] { cursor: default; }
 <h4 id="_parameters_11">Parameters</h4>
 <table class="tableblock frame-all grid-all" style="width:100%; ">
 <colgroup>
-<col style="width:16%;">
-<col style="width:16%;">
-<col style="width:16%;">
-<col style="width:16%;">
-<col style="width:16%;">
-<col style="width:16%;"> 
+<col style="width:16%;"/>
+<col style="width:16%;"/>
+<col style="width:16%;"/>
+<col style="width:16%;"/>
+<col style="width:16%;"/>
+<col style="width:16%;"/>
 </colgroup>
 <thead>
 <tr>
@@ -1825,15 +1898,14 @@ span.icon > [class^="icon-"], span.icon > [class*=" icon-"] { cursor: default; }
 </tr>
 </tbody>
 </table>
-
 </div>
 <div class="sect3">
 <h4 id="_responses_12">Responses</h4>
 <table class="tableblock frame-all grid-all" style="width:100%; ">
 <colgroup>
-<col style="width:33%;">
-<col style="width:33%;">
-<col style="width:33%;"> 
+<col style="width:33%;"/>
+<col style="width:33%;"/>
+<col style="width:33%;"/>
 </colgroup>
 <thead>
 <tr>
@@ -1846,11 +1918,10 @@ span.icon > [class^="icon-"], span.icon > [class*=" icon-"] { cursor: default; }
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">200</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">success</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="../definitions#_v1beta1_clusterrole">v1beta1.ClusterRole</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="definitions.html#_v1beta1_clusterrole">v1beta1.ClusterRole</a></p></td>
 </tr>
 </tbody>
 </table>
-
 </div>
 <div class="sect3">
 <h4 id="_consumes_12">Consumes</h4>
@@ -1900,12 +1971,12 @@ span.icon > [class^="icon-"], span.icon > [class*=" icon-"] { cursor: default; }
 <h4 id="_parameters_12">Parameters</h4>
 <table class="tableblock frame-all grid-all" style="width:100%; ">
 <colgroup>
-<col style="width:16%;">
-<col style="width:16%;">
-<col style="width:16%;">
-<col style="width:16%;">
-<col style="width:16%;">
-<col style="width:16%;"> 
+<col style="width:16%;"/>
+<col style="width:16%;"/>
+<col style="width:16%;"/>
+<col style="width:16%;"/>
+<col style="width:16%;"/>
+<col style="width:16%;"/>
 </colgroup>
 <thead>
 <tr>
@@ -1931,7 +2002,7 @@ span.icon > [class^="icon-"], span.icon > [class*=" icon-"] { cursor: default; }
 <td class="tableblock halign-left valign-top"><p class="tableblock">body</p></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">true</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="../definitions#_v1beta1_clusterrole">v1beta1.ClusterRole</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="definitions.html#_v1beta1_clusterrole">v1beta1.ClusterRole</a></p></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
@@ -1944,15 +2015,14 @@ span.icon > [class^="icon-"], span.icon > [class*=" icon-"] { cursor: default; }
 </tr>
 </tbody>
 </table>
-
 </div>
 <div class="sect3">
 <h4 id="_responses_13">Responses</h4>
 <table class="tableblock frame-all grid-all" style="width:100%; ">
 <colgroup>
-<col style="width:33%;">
-<col style="width:33%;">
-<col style="width:33%;"> 
+<col style="width:33%;"/>
+<col style="width:33%;"/>
+<col style="width:33%;"/>
 </colgroup>
 <thead>
 <tr>
@@ -1965,11 +2035,15 @@ span.icon > [class^="icon-"], span.icon > [class*=" icon-"] { cursor: default; }
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">200</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">success</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="../definitions#_v1beta1_clusterrole">v1beta1.ClusterRole</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="definitions.html#_v1beta1_clusterrole">v1beta1.ClusterRole</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">201</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Created</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="definitions.html#_v1beta1_clusterrole">v1beta1.ClusterRole</a></p></td>
 </tr>
 </tbody>
 </table>
-
 </div>
 <div class="sect3">
 <h4 id="_consumes_13">Consumes</h4>
@@ -2019,12 +2093,12 @@ span.icon > [class^="icon-"], span.icon > [class*=" icon-"] { cursor: default; }
 <h4 id="_parameters_13">Parameters</h4>
 <table class="tableblock frame-all grid-all" style="width:100%; ">
 <colgroup>
-<col style="width:16%;">
-<col style="width:16%;">
-<col style="width:16%;">
-<col style="width:16%;">
-<col style="width:16%;">
-<col style="width:16%;"> 
+<col style="width:16%;"/>
+<col style="width:16%;"/>
+<col style="width:16%;"/>
+<col style="width:16%;"/>
+<col style="width:16%;"/>
+<col style="width:16%;"/>
 </colgroup>
 <thead>
 <tr>
@@ -2050,7 +2124,7 @@ span.icon > [class^="icon-"], span.icon > [class*=" icon-"] { cursor: default; }
 <td class="tableblock halign-left valign-top"><p class="tableblock">body</p></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">true</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="../definitions#_v1_deleteoptions">v1.DeleteOptions</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="definitions.html#_v1_deleteoptions">v1.DeleteOptions</a></p></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
@@ -2064,7 +2138,7 @@ span.icon > [class^="icon-"], span.icon > [class*=" icon-"] { cursor: default; }
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">QueryParameter</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">orphanDependents</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the "orphan" finalizer will be added to/removed from the object&#8217;s finalizers list. Either this field or PropagationPolicy may be set, but not both.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the "orphan" finalizer will be added to/removed from the object’s finalizers list. Either this field or PropagationPolicy may be set, but not both.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">false</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">boolean</p></td>
 <td class="tableblock halign-left valign-top"></td>
@@ -2072,7 +2146,7 @@ span.icon > [class^="icon-"], span.icon > [class*=" icon-"] { cursor: default; }
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">QueryParameter</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">propagationPolicy</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: <em>Orphan</em> - orphan the dependents; <em>Background</em> - allow the garbage collector to delete the dependents in the background; <em>Foreground</em> - a cascading policy that deletes all dependents in the foreground.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">false</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
 <td class="tableblock halign-left valign-top"></td>
@@ -2087,15 +2161,14 @@ span.icon > [class^="icon-"], span.icon > [class*=" icon-"] { cursor: default; }
 </tr>
 </tbody>
 </table>
-
 </div>
 <div class="sect3">
 <h4 id="_responses_14">Responses</h4>
 <table class="tableblock frame-all grid-all" style="width:100%; ">
 <colgroup>
-<col style="width:33%;">
-<col style="width:33%;">
-<col style="width:33%;"> 
+<col style="width:33%;"/>
+<col style="width:33%;"/>
+<col style="width:33%;"/>
 </colgroup>
 <thead>
 <tr>
@@ -2108,11 +2181,10 @@ span.icon > [class^="icon-"], span.icon > [class*=" icon-"] { cursor: default; }
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">200</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">success</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="../definitions#_v1_status">v1.Status</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="definitions.html#_v1_status">v1.Status</a></p></td>
 </tr>
 </tbody>
 </table>
-
 </div>
 <div class="sect3">
 <h4 id="_consumes_14">Consumes</h4>
@@ -2162,12 +2234,12 @@ span.icon > [class^="icon-"], span.icon > [class*=" icon-"] { cursor: default; }
 <h4 id="_parameters_14">Parameters</h4>
 <table class="tableblock frame-all grid-all" style="width:100%; ">
 <colgroup>
-<col style="width:16%;">
-<col style="width:16%;">
-<col style="width:16%;">
-<col style="width:16%;">
-<col style="width:16%;">
-<col style="width:16%;"> 
+<col style="width:16%;"/>
+<col style="width:16%;"/>
+<col style="width:16%;"/>
+<col style="width:16%;"/>
+<col style="width:16%;"/>
+<col style="width:16%;"/>
 </colgroup>
 <thead>
 <tr>
@@ -2193,7 +2265,7 @@ span.icon > [class^="icon-"], span.icon > [class*=" icon-"] { cursor: default; }
 <td class="tableblock halign-left valign-top"><p class="tableblock">body</p></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">true</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="../definitions#_v1_patch">v1.Patch</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="definitions.html#_v1_patch">v1.Patch</a></p></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
@@ -2206,15 +2278,14 @@ span.icon > [class^="icon-"], span.icon > [class*=" icon-"] { cursor: default; }
 </tr>
 </tbody>
 </table>
-
 </div>
 <div class="sect3">
 <h4 id="_responses_15">Responses</h4>
 <table class="tableblock frame-all grid-all" style="width:100%; ">
 <colgroup>
-<col style="width:33%;">
-<col style="width:33%;">
-<col style="width:33%;"> 
+<col style="width:33%;"/>
+<col style="width:33%;"/>
+<col style="width:33%;"/>
 </colgroup>
 <thead>
 <tr>
@@ -2227,11 +2298,10 @@ span.icon > [class^="icon-"], span.icon > [class*=" icon-"] { cursor: default; }
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">200</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">success</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="../definitions#_v1beta1_clusterrole">v1beta1.ClusterRole</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="definitions.html#_v1beta1_clusterrole">v1beta1.ClusterRole</a></p></td>
 </tr>
 </tbody>
 </table>
-
 </div>
 <div class="sect3">
 <h4 id="_consumes_15">Consumes</h4>
@@ -2287,12 +2357,12 @@ span.icon > [class^="icon-"], span.icon > [class*=" icon-"] { cursor: default; }
 <h4 id="_parameters_15">Parameters</h4>
 <table class="tableblock frame-all grid-all" style="width:100%; ">
 <colgroup>
-<col style="width:16%;">
-<col style="width:16%;">
-<col style="width:16%;">
-<col style="width:16%;">
-<col style="width:16%;">
-<col style="width:16%;"> 
+<col style="width:16%;"/>
+<col style="width:16%;"/>
+<col style="width:16%;"/>
+<col style="width:16%;"/>
+<col style="width:16%;"/>
+<col style="width:16%;"/>
 </colgroup>
 <thead>
 <tr>
@@ -2348,7 +2418,7 @@ span.icon > [class^="icon-"], span.icon > [class*=" icon-"] { cursor: default; }
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">QueryParameter</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">resourceVersion</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">When specified with a watch call, shows changes that occur after that particular version of a resource. Defaults to changes from the beginning of history. When specified for list: - if unset, then the result is returned from remote storage based on quorum-read flag; - if it&#8217;s 0, then we simply return what we currently have in cache, no guarantee; - if set to non zero, then the result is at least as fresh as given rv.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">When specified with a watch call, shows changes that occur after that particular version of a resource. Defaults to changes from the beginning of history. When specified for list: - if unset, then the result is returned from remote storage based on quorum-read flag; - if it’s 0, then we simply return what we currently have in cache, no guarantee; - if set to non zero, then the result is at least as fresh as given rv.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">false</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
 <td class="tableblock halign-left valign-top"></td>
@@ -2362,6 +2432,23 @@ span.icon > [class^="icon-"], span.icon > [class*=" icon-"] { cursor: default; }
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">QueryParameter</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">limit</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">limit is a maximum number of responses to return for a list call. If more items exist, the server will set the <code>continue</code> field on the list metadata to a value that can be used with the same initial query to retrieve the next set of results. Setting a limit may return fewer than the requested amount of items (up to zero items) in the event all requested objects are filtered out and clients should only use the presence of the continue field to determine whether more results are available. Servers may choose not to support the limit argument and will return all of the available results. If limit is specified and the continue field is empty, clients may assume that no more results are available. This field is not supported if watch is true.
+</p><p class="tableblock">The server guarantees that the objects returned when using continue will be identical to issuing a single list call without a limit - that is, no objects created, modified, or deleted after the first request is issued will be included in any subsequent continued requests. This is sometimes referred to as a consistent snapshot, and ensures that a client that is using limit to receive smaller chunks of a very large result can ensure they see all possible objects. If objects are updated during a chunked list the version of the object that was present at the time the first list result was calculated is returned.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">false</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">integer (int32)</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">QueryParameter</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">continue</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The continue option should be set when retrieving more results from the server. Since this value is server defined, clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server the server will respond with a 410 ResourceExpired error indicating the client must restart their list without the continue field. This field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">false</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">PathParameter</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">namespace</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">object name and auth scope, such as for teams and projects</p></td>
@@ -2371,15 +2458,14 @@ span.icon > [class^="icon-"], span.icon > [class*=" icon-"] { cursor: default; }
 </tr>
 </tbody>
 </table>
-
 </div>
 <div class="sect3">
 <h4 id="_responses_16">Responses</h4>
 <table class="tableblock frame-all grid-all" style="width:100%; ">
 <colgroup>
-<col style="width:33%;">
-<col style="width:33%;">
-<col style="width:33%;"> 
+<col style="width:33%;"/>
+<col style="width:33%;"/>
+<col style="width:33%;"/>
 </colgroup>
 <thead>
 <tr>
@@ -2392,11 +2478,10 @@ span.icon > [class^="icon-"], span.icon > [class*=" icon-"] { cursor: default; }
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">200</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">success</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="../definitions#_v1beta1_rolebindinglist">v1beta1.RoleBindingList</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="definitions.html#_v1beta1_rolebindinglist">v1beta1.RoleBindingList</a></p></td>
 </tr>
 </tbody>
 </table>
-
 </div>
 <div class="sect3">
 <h4 id="_consumes_16">Consumes</h4>
@@ -2452,12 +2537,12 @@ span.icon > [class^="icon-"], span.icon > [class*=" icon-"] { cursor: default; }
 <h4 id="_parameters_16">Parameters</h4>
 <table class="tableblock frame-all grid-all" style="width:100%; ">
 <colgroup>
-<col style="width:16%;">
-<col style="width:16%;">
-<col style="width:16%;">
-<col style="width:16%;">
-<col style="width:16%;">
-<col style="width:16%;"> 
+<col style="width:16%;"/>
+<col style="width:16%;"/>
+<col style="width:16%;"/>
+<col style="width:16%;"/>
+<col style="width:16%;"/>
+<col style="width:16%;"/>
 </colgroup>
 <thead>
 <tr>
@@ -2513,7 +2598,7 @@ span.icon > [class^="icon-"], span.icon > [class*=" icon-"] { cursor: default; }
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">QueryParameter</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">resourceVersion</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">When specified with a watch call, shows changes that occur after that particular version of a resource. Defaults to changes from the beginning of history. When specified for list: - if unset, then the result is returned from remote storage based on quorum-read flag; - if it&#8217;s 0, then we simply return what we currently have in cache, no guarantee; - if set to non zero, then the result is at least as fresh as given rv.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">When specified with a watch call, shows changes that occur after that particular version of a resource. Defaults to changes from the beginning of history. When specified for list: - if unset, then the result is returned from remote storage based on quorum-read flag; - if it’s 0, then we simply return what we currently have in cache, no guarantee; - if set to non zero, then the result is at least as fresh as given rv.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">false</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
 <td class="tableblock halign-left valign-top"></td>
@@ -2527,6 +2612,23 @@ span.icon > [class^="icon-"], span.icon > [class*=" icon-"] { cursor: default; }
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">QueryParameter</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">limit</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">limit is a maximum number of responses to return for a list call. If more items exist, the server will set the <code>continue</code> field on the list metadata to a value that can be used with the same initial query to retrieve the next set of results. Setting a limit may return fewer than the requested amount of items (up to zero items) in the event all requested objects are filtered out and clients should only use the presence of the continue field to determine whether more results are available. Servers may choose not to support the limit argument and will return all of the available results. If limit is specified and the continue field is empty, clients may assume that no more results are available. This field is not supported if watch is true.
+</p><p class="tableblock">The server guarantees that the objects returned when using continue will be identical to issuing a single list call without a limit - that is, no objects created, modified, or deleted after the first request is issued will be included in any subsequent continued requests. This is sometimes referred to as a consistent snapshot, and ensures that a client that is using limit to receive smaller chunks of a very large result can ensure they see all possible objects. If objects are updated during a chunked list the version of the object that was present at the time the first list result was calculated is returned.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">false</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">integer (int32)</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">QueryParameter</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">continue</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The continue option should be set when retrieving more results from the server. Since this value is server defined, clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server the server will respond with a 410 ResourceExpired error indicating the client must restart their list without the continue field. This field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">false</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">PathParameter</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">namespace</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">object name and auth scope, such as for teams and projects</p></td>
@@ -2536,15 +2638,14 @@ span.icon > [class^="icon-"], span.icon > [class*=" icon-"] { cursor: default; }
 </tr>
 </tbody>
 </table>
-
 </div>
 <div class="sect3">
 <h4 id="_responses_17">Responses</h4>
 <table class="tableblock frame-all grid-all" style="width:100%; ">
 <colgroup>
-<col style="width:33%;">
-<col style="width:33%;">
-<col style="width:33%;"> 
+<col style="width:33%;"/>
+<col style="width:33%;"/>
+<col style="width:33%;"/>
 </colgroup>
 <thead>
 <tr>
@@ -2557,11 +2658,10 @@ span.icon > [class^="icon-"], span.icon > [class*=" icon-"] { cursor: default; }
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">200</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">success</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="../definitions#_v1_status">v1.Status</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="definitions.html#_v1_status">v1.Status</a></p></td>
 </tr>
 </tbody>
 </table>
-
 </div>
 <div class="sect3">
 <h4 id="_consumes_17">Consumes</h4>
@@ -2611,12 +2711,12 @@ span.icon > [class^="icon-"], span.icon > [class*=" icon-"] { cursor: default; }
 <h4 id="_parameters_17">Parameters</h4>
 <table class="tableblock frame-all grid-all" style="width:100%; ">
 <colgroup>
-<col style="width:16%;">
-<col style="width:16%;">
-<col style="width:16%;">
-<col style="width:16%;">
-<col style="width:16%;">
-<col style="width:16%;"> 
+<col style="width:16%;"/>
+<col style="width:16%;"/>
+<col style="width:16%;"/>
+<col style="width:16%;"/>
+<col style="width:16%;"/>
+<col style="width:16%;"/>
 </colgroup>
 <thead>
 <tr>
@@ -2642,7 +2742,7 @@ span.icon > [class^="icon-"], span.icon > [class*=" icon-"] { cursor: default; }
 <td class="tableblock halign-left valign-top"><p class="tableblock">body</p></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">true</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="../definitions#_v1beta1_rolebinding">v1beta1.RoleBinding</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="definitions.html#_v1beta1_rolebinding">v1beta1.RoleBinding</a></p></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
@@ -2655,15 +2755,14 @@ span.icon > [class^="icon-"], span.icon > [class*=" icon-"] { cursor: default; }
 </tr>
 </tbody>
 </table>
-
 </div>
 <div class="sect3">
 <h4 id="_responses_18">Responses</h4>
 <table class="tableblock frame-all grid-all" style="width:100%; ">
 <colgroup>
-<col style="width:33%;">
-<col style="width:33%;">
-<col style="width:33%;"> 
+<col style="width:33%;"/>
+<col style="width:33%;"/>
+<col style="width:33%;"/>
 </colgroup>
 <thead>
 <tr>
@@ -2674,13 +2773,22 @@ span.icon > [class^="icon-"], span.icon > [class*=" icon-"] { cursor: default; }
 </thead>
 <tbody>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">202</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Accepted</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="definitions.html#_v1beta1_rolebinding">v1beta1.RoleBinding</a></p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">200</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">success</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="../definitions#_v1beta1_rolebinding">v1beta1.RoleBinding</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="definitions.html#_v1beta1_rolebinding">v1beta1.RoleBinding</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">201</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Created</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="definitions.html#_v1beta1_rolebinding">v1beta1.RoleBinding</a></p></td>
 </tr>
 </tbody>
 </table>
-
 </div>
 <div class="sect3">
 <h4 id="_consumes_18">Consumes</h4>
@@ -2730,12 +2838,12 @@ span.icon > [class^="icon-"], span.icon > [class*=" icon-"] { cursor: default; }
 <h4 id="_parameters_18">Parameters</h4>
 <table class="tableblock frame-all grid-all" style="width:100%; ">
 <colgroup>
-<col style="width:16%;">
-<col style="width:16%;">
-<col style="width:16%;">
-<col style="width:16%;">
-<col style="width:16%;">
-<col style="width:16%;"> 
+<col style="width:16%;"/>
+<col style="width:16%;"/>
+<col style="width:16%;"/>
+<col style="width:16%;"/>
+<col style="width:16%;"/>
+<col style="width:16%;"/>
 </colgroup>
 <thead>
 <tr>
@@ -2774,15 +2882,14 @@ span.icon > [class^="icon-"], span.icon > [class*=" icon-"] { cursor: default; }
 </tr>
 </tbody>
 </table>
-
 </div>
 <div class="sect3">
 <h4 id="_responses_19">Responses</h4>
 <table class="tableblock frame-all grid-all" style="width:100%; ">
 <colgroup>
-<col style="width:33%;">
-<col style="width:33%;">
-<col style="width:33%;"> 
+<col style="width:33%;"/>
+<col style="width:33%;"/>
+<col style="width:33%;"/>
 </colgroup>
 <thead>
 <tr>
@@ -2795,11 +2902,10 @@ span.icon > [class^="icon-"], span.icon > [class*=" icon-"] { cursor: default; }
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">200</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">success</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="../definitions#_v1beta1_rolebinding">v1beta1.RoleBinding</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="definitions.html#_v1beta1_rolebinding">v1beta1.RoleBinding</a></p></td>
 </tr>
 </tbody>
 </table>
-
 </div>
 <div class="sect3">
 <h4 id="_consumes_19">Consumes</h4>
@@ -2849,12 +2955,12 @@ span.icon > [class^="icon-"], span.icon > [class*=" icon-"] { cursor: default; }
 <h4 id="_parameters_19">Parameters</h4>
 <table class="tableblock frame-all grid-all" style="width:100%; ">
 <colgroup>
-<col style="width:16%;">
-<col style="width:16%;">
-<col style="width:16%;">
-<col style="width:16%;">
-<col style="width:16%;">
-<col style="width:16%;"> 
+<col style="width:16%;"/>
+<col style="width:16%;"/>
+<col style="width:16%;"/>
+<col style="width:16%;"/>
+<col style="width:16%;"/>
+<col style="width:16%;"/>
 </colgroup>
 <thead>
 <tr>
@@ -2880,7 +2986,7 @@ span.icon > [class^="icon-"], span.icon > [class*=" icon-"] { cursor: default; }
 <td class="tableblock halign-left valign-top"><p class="tableblock">body</p></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">true</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="../definitions#_v1beta1_rolebinding">v1beta1.RoleBinding</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="definitions.html#_v1beta1_rolebinding">v1beta1.RoleBinding</a></p></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
@@ -2901,15 +3007,14 @@ span.icon > [class^="icon-"], span.icon > [class*=" icon-"] { cursor: default; }
 </tr>
 </tbody>
 </table>
-
 </div>
 <div class="sect3">
 <h4 id="_responses_20">Responses</h4>
 <table class="tableblock frame-all grid-all" style="width:100%; ">
 <colgroup>
-<col style="width:33%;">
-<col style="width:33%;">
-<col style="width:33%;"> 
+<col style="width:33%;"/>
+<col style="width:33%;"/>
+<col style="width:33%;"/>
 </colgroup>
 <thead>
 <tr>
@@ -2922,11 +3027,15 @@ span.icon > [class^="icon-"], span.icon > [class*=" icon-"] { cursor: default; }
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">200</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">success</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="../definitions#_v1beta1_rolebinding">v1beta1.RoleBinding</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="definitions.html#_v1beta1_rolebinding">v1beta1.RoleBinding</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">201</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Created</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="definitions.html#_v1beta1_rolebinding">v1beta1.RoleBinding</a></p></td>
 </tr>
 </tbody>
 </table>
-
 </div>
 <div class="sect3">
 <h4 id="_consumes_20">Consumes</h4>
@@ -2976,12 +3085,12 @@ span.icon > [class^="icon-"], span.icon > [class*=" icon-"] { cursor: default; }
 <h4 id="_parameters_20">Parameters</h4>
 <table class="tableblock frame-all grid-all" style="width:100%; ">
 <colgroup>
-<col style="width:16%;">
-<col style="width:16%;">
-<col style="width:16%;">
-<col style="width:16%;">
-<col style="width:16%;">
-<col style="width:16%;"> 
+<col style="width:16%;"/>
+<col style="width:16%;"/>
+<col style="width:16%;"/>
+<col style="width:16%;"/>
+<col style="width:16%;"/>
+<col style="width:16%;"/>
 </colgroup>
 <thead>
 <tr>
@@ -3007,7 +3116,7 @@ span.icon > [class^="icon-"], span.icon > [class*=" icon-"] { cursor: default; }
 <td class="tableblock halign-left valign-top"><p class="tableblock">body</p></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">true</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="../definitions#_v1_deleteoptions">v1.DeleteOptions</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="definitions.html#_v1_deleteoptions">v1.DeleteOptions</a></p></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
@@ -3021,7 +3130,7 @@ span.icon > [class^="icon-"], span.icon > [class*=" icon-"] { cursor: default; }
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">QueryParameter</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">orphanDependents</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the "orphan" finalizer will be added to/removed from the object&#8217;s finalizers list. Either this field or PropagationPolicy may be set, but not both.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the "orphan" finalizer will be added to/removed from the object’s finalizers list. Either this field or PropagationPolicy may be set, but not both.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">false</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">boolean</p></td>
 <td class="tableblock halign-left valign-top"></td>
@@ -3029,7 +3138,7 @@ span.icon > [class^="icon-"], span.icon > [class*=" icon-"] { cursor: default; }
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">QueryParameter</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">propagationPolicy</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: <em>Orphan</em> - orphan the dependents; <em>Background</em> - allow the garbage collector to delete the dependents in the background; <em>Foreground</em> - a cascading policy that deletes all dependents in the foreground.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">false</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
 <td class="tableblock halign-left valign-top"></td>
@@ -3052,15 +3161,14 @@ span.icon > [class^="icon-"], span.icon > [class*=" icon-"] { cursor: default; }
 </tr>
 </tbody>
 </table>
-
 </div>
 <div class="sect3">
 <h4 id="_responses_21">Responses</h4>
 <table class="tableblock frame-all grid-all" style="width:100%; ">
 <colgroup>
-<col style="width:33%;">
-<col style="width:33%;">
-<col style="width:33%;"> 
+<col style="width:33%;"/>
+<col style="width:33%;"/>
+<col style="width:33%;"/>
 </colgroup>
 <thead>
 <tr>
@@ -3073,11 +3181,10 @@ span.icon > [class^="icon-"], span.icon > [class*=" icon-"] { cursor: default; }
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">200</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">success</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="../definitions#_v1_status">v1.Status</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="definitions.html#_v1_status">v1.Status</a></p></td>
 </tr>
 </tbody>
 </table>
-
 </div>
 <div class="sect3">
 <h4 id="_consumes_21">Consumes</h4>
@@ -3127,12 +3234,12 @@ span.icon > [class^="icon-"], span.icon > [class*=" icon-"] { cursor: default; }
 <h4 id="_parameters_21">Parameters</h4>
 <table class="tableblock frame-all grid-all" style="width:100%; ">
 <colgroup>
-<col style="width:16%;">
-<col style="width:16%;">
-<col style="width:16%;">
-<col style="width:16%;">
-<col style="width:16%;">
-<col style="width:16%;"> 
+<col style="width:16%;"/>
+<col style="width:16%;"/>
+<col style="width:16%;"/>
+<col style="width:16%;"/>
+<col style="width:16%;"/>
+<col style="width:16%;"/>
 </colgroup>
 <thead>
 <tr>
@@ -3158,7 +3265,7 @@ span.icon > [class^="icon-"], span.icon > [class*=" icon-"] { cursor: default; }
 <td class="tableblock halign-left valign-top"><p class="tableblock">body</p></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">true</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="../definitions#_v1_patch">v1.Patch</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="definitions.html#_v1_patch">v1.Patch</a></p></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
@@ -3179,15 +3286,14 @@ span.icon > [class^="icon-"], span.icon > [class*=" icon-"] { cursor: default; }
 </tr>
 </tbody>
 </table>
-
 </div>
 <div class="sect3">
 <h4 id="_responses_22">Responses</h4>
 <table class="tableblock frame-all grid-all" style="width:100%; ">
 <colgroup>
-<col style="width:33%;">
-<col style="width:33%;">
-<col style="width:33%;"> 
+<col style="width:33%;"/>
+<col style="width:33%;"/>
+<col style="width:33%;"/>
 </colgroup>
 <thead>
 <tr>
@@ -3200,11 +3306,10 @@ span.icon > [class^="icon-"], span.icon > [class*=" icon-"] { cursor: default; }
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">200</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">success</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="../definitions#_v1beta1_rolebinding">v1beta1.RoleBinding</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="definitions.html#_v1beta1_rolebinding">v1beta1.RoleBinding</a></p></td>
 </tr>
 </tbody>
 </table>
-
 </div>
 <div class="sect3">
 <h4 id="_consumes_22">Consumes</h4>
@@ -3260,12 +3365,12 @@ span.icon > [class^="icon-"], span.icon > [class*=" icon-"] { cursor: default; }
 <h4 id="_parameters_22">Parameters</h4>
 <table class="tableblock frame-all grid-all" style="width:100%; ">
 <colgroup>
-<col style="width:16%;">
-<col style="width:16%;">
-<col style="width:16%;">
-<col style="width:16%;">
-<col style="width:16%;">
-<col style="width:16%;"> 
+<col style="width:16%;"/>
+<col style="width:16%;"/>
+<col style="width:16%;"/>
+<col style="width:16%;"/>
+<col style="width:16%;"/>
+<col style="width:16%;"/>
 </colgroup>
 <thead>
 <tr>
@@ -3321,7 +3426,7 @@ span.icon > [class^="icon-"], span.icon > [class*=" icon-"] { cursor: default; }
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">QueryParameter</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">resourceVersion</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">When specified with a watch call, shows changes that occur after that particular version of a resource. Defaults to changes from the beginning of history. When specified for list: - if unset, then the result is returned from remote storage based on quorum-read flag; - if it&#8217;s 0, then we simply return what we currently have in cache, no guarantee; - if set to non zero, then the result is at least as fresh as given rv.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">When specified with a watch call, shows changes that occur after that particular version of a resource. Defaults to changes from the beginning of history. When specified for list: - if unset, then the result is returned from remote storage based on quorum-read flag; - if it’s 0, then we simply return what we currently have in cache, no guarantee; - if set to non zero, then the result is at least as fresh as given rv.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">false</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
 <td class="tableblock halign-left valign-top"></td>
@@ -3335,6 +3440,23 @@ span.icon > [class^="icon-"], span.icon > [class*=" icon-"] { cursor: default; }
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">QueryParameter</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">limit</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">limit is a maximum number of responses to return for a list call. If more items exist, the server will set the <code>continue</code> field on the list metadata to a value that can be used with the same initial query to retrieve the next set of results. Setting a limit may return fewer than the requested amount of items (up to zero items) in the event all requested objects are filtered out and clients should only use the presence of the continue field to determine whether more results are available. Servers may choose not to support the limit argument and will return all of the available results. If limit is specified and the continue field is empty, clients may assume that no more results are available. This field is not supported if watch is true.
+</p><p class="tableblock">The server guarantees that the objects returned when using continue will be identical to issuing a single list call without a limit - that is, no objects created, modified, or deleted after the first request is issued will be included in any subsequent continued requests. This is sometimes referred to as a consistent snapshot, and ensures that a client that is using limit to receive smaller chunks of a very large result can ensure they see all possible objects. If objects are updated during a chunked list the version of the object that was present at the time the first list result was calculated is returned.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">false</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">integer (int32)</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">QueryParameter</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">continue</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The continue option should be set when retrieving more results from the server. Since this value is server defined, clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server the server will respond with a 410 ResourceExpired error indicating the client must restart their list without the continue field. This field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">false</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">PathParameter</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">namespace</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">object name and auth scope, such as for teams and projects</p></td>
@@ -3344,15 +3466,14 @@ span.icon > [class^="icon-"], span.icon > [class*=" icon-"] { cursor: default; }
 </tr>
 </tbody>
 </table>
-
 </div>
 <div class="sect3">
 <h4 id="_responses_23">Responses</h4>
 <table class="tableblock frame-all grid-all" style="width:100%; ">
 <colgroup>
-<col style="width:33%;">
-<col style="width:33%;">
-<col style="width:33%;"> 
+<col style="width:33%;"/>
+<col style="width:33%;"/>
+<col style="width:33%;"/>
 </colgroup>
 <thead>
 <tr>
@@ -3365,11 +3486,10 @@ span.icon > [class^="icon-"], span.icon > [class*=" icon-"] { cursor: default; }
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">200</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">success</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="../definitions#_v1beta1_rolelist">v1beta1.RoleList</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="definitions.html#_v1beta1_rolelist">v1beta1.RoleList</a></p></td>
 </tr>
 </tbody>
 </table>
-
 </div>
 <div class="sect3">
 <h4 id="_consumes_23">Consumes</h4>
@@ -3425,12 +3545,12 @@ span.icon > [class^="icon-"], span.icon > [class*=" icon-"] { cursor: default; }
 <h4 id="_parameters_23">Parameters</h4>
 <table class="tableblock frame-all grid-all" style="width:100%; ">
 <colgroup>
-<col style="width:16%;">
-<col style="width:16%;">
-<col style="width:16%;">
-<col style="width:16%;">
-<col style="width:16%;">
-<col style="width:16%;"> 
+<col style="width:16%;"/>
+<col style="width:16%;"/>
+<col style="width:16%;"/>
+<col style="width:16%;"/>
+<col style="width:16%;"/>
+<col style="width:16%;"/>
 </colgroup>
 <thead>
 <tr>
@@ -3486,7 +3606,7 @@ span.icon > [class^="icon-"], span.icon > [class*=" icon-"] { cursor: default; }
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">QueryParameter</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">resourceVersion</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">When specified with a watch call, shows changes that occur after that particular version of a resource. Defaults to changes from the beginning of history. When specified for list: - if unset, then the result is returned from remote storage based on quorum-read flag; - if it&#8217;s 0, then we simply return what we currently have in cache, no guarantee; - if set to non zero, then the result is at least as fresh as given rv.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">When specified with a watch call, shows changes that occur after that particular version of a resource. Defaults to changes from the beginning of history. When specified for list: - if unset, then the result is returned from remote storage based on quorum-read flag; - if it’s 0, then we simply return what we currently have in cache, no guarantee; - if set to non zero, then the result is at least as fresh as given rv.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">false</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
 <td class="tableblock halign-left valign-top"></td>
@@ -3500,6 +3620,23 @@ span.icon > [class^="icon-"], span.icon > [class*=" icon-"] { cursor: default; }
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">QueryParameter</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">limit</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">limit is a maximum number of responses to return for a list call. If more items exist, the server will set the <code>continue</code> field on the list metadata to a value that can be used with the same initial query to retrieve the next set of results. Setting a limit may return fewer than the requested amount of items (up to zero items) in the event all requested objects are filtered out and clients should only use the presence of the continue field to determine whether more results are available. Servers may choose not to support the limit argument and will return all of the available results. If limit is specified and the continue field is empty, clients may assume that no more results are available. This field is not supported if watch is true.
+</p><p class="tableblock">The server guarantees that the objects returned when using continue will be identical to issuing a single list call without a limit - that is, no objects created, modified, or deleted after the first request is issued will be included in any subsequent continued requests. This is sometimes referred to as a consistent snapshot, and ensures that a client that is using limit to receive smaller chunks of a very large result can ensure they see all possible objects. If objects are updated during a chunked list the version of the object that was present at the time the first list result was calculated is returned.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">false</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">integer (int32)</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">QueryParameter</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">continue</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The continue option should be set when retrieving more results from the server. Since this value is server defined, clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server the server will respond with a 410 ResourceExpired error indicating the client must restart their list without the continue field. This field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">false</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">PathParameter</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">namespace</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">object name and auth scope, such as for teams and projects</p></td>
@@ -3509,15 +3646,14 @@ span.icon > [class^="icon-"], span.icon > [class*=" icon-"] { cursor: default; }
 </tr>
 </tbody>
 </table>
-
 </div>
 <div class="sect3">
 <h4 id="_responses_24">Responses</h4>
 <table class="tableblock frame-all grid-all" style="width:100%; ">
 <colgroup>
-<col style="width:33%;">
-<col style="width:33%;">
-<col style="width:33%;"> 
+<col style="width:33%;"/>
+<col style="width:33%;"/>
+<col style="width:33%;"/>
 </colgroup>
 <thead>
 <tr>
@@ -3530,11 +3666,10 @@ span.icon > [class^="icon-"], span.icon > [class*=" icon-"] { cursor: default; }
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">200</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">success</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="../definitions#_v1_status">v1.Status</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="definitions.html#_v1_status">v1.Status</a></p></td>
 </tr>
 </tbody>
 </table>
-
 </div>
 <div class="sect3">
 <h4 id="_consumes_24">Consumes</h4>
@@ -3584,12 +3719,12 @@ span.icon > [class^="icon-"], span.icon > [class*=" icon-"] { cursor: default; }
 <h4 id="_parameters_24">Parameters</h4>
 <table class="tableblock frame-all grid-all" style="width:100%; ">
 <colgroup>
-<col style="width:16%;">
-<col style="width:16%;">
-<col style="width:16%;">
-<col style="width:16%;">
-<col style="width:16%;">
-<col style="width:16%;"> 
+<col style="width:16%;"/>
+<col style="width:16%;"/>
+<col style="width:16%;"/>
+<col style="width:16%;"/>
+<col style="width:16%;"/>
+<col style="width:16%;"/>
 </colgroup>
 <thead>
 <tr>
@@ -3615,7 +3750,7 @@ span.icon > [class^="icon-"], span.icon > [class*=" icon-"] { cursor: default; }
 <td class="tableblock halign-left valign-top"><p class="tableblock">body</p></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">true</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="../definitions#_v1beta1_role">v1beta1.Role</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="definitions.html#_v1beta1_role">v1beta1.Role</a></p></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
@@ -3628,15 +3763,14 @@ span.icon > [class^="icon-"], span.icon > [class*=" icon-"] { cursor: default; }
 </tr>
 </tbody>
 </table>
-
 </div>
 <div class="sect3">
 <h4 id="_responses_25">Responses</h4>
 <table class="tableblock frame-all grid-all" style="width:100%; ">
 <colgroup>
-<col style="width:33%;">
-<col style="width:33%;">
-<col style="width:33%;"> 
+<col style="width:33%;"/>
+<col style="width:33%;"/>
+<col style="width:33%;"/>
 </colgroup>
 <thead>
 <tr>
@@ -3647,13 +3781,22 @@ span.icon > [class^="icon-"], span.icon > [class*=" icon-"] { cursor: default; }
 </thead>
 <tbody>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">202</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Accepted</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="definitions.html#_v1beta1_role">v1beta1.Role</a></p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">200</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">success</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="../definitions#_v1beta1_role">v1beta1.Role</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="definitions.html#_v1beta1_role">v1beta1.Role</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">201</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Created</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="definitions.html#_v1beta1_role">v1beta1.Role</a></p></td>
 </tr>
 </tbody>
 </table>
-
 </div>
 <div class="sect3">
 <h4 id="_consumes_25">Consumes</h4>
@@ -3703,12 +3846,12 @@ span.icon > [class^="icon-"], span.icon > [class*=" icon-"] { cursor: default; }
 <h4 id="_parameters_25">Parameters</h4>
 <table class="tableblock frame-all grid-all" style="width:100%; ">
 <colgroup>
-<col style="width:16%;">
-<col style="width:16%;">
-<col style="width:16%;">
-<col style="width:16%;">
-<col style="width:16%;">
-<col style="width:16%;"> 
+<col style="width:16%;"/>
+<col style="width:16%;"/>
+<col style="width:16%;"/>
+<col style="width:16%;"/>
+<col style="width:16%;"/>
+<col style="width:16%;"/>
 </colgroup>
 <thead>
 <tr>
@@ -3747,15 +3890,14 @@ span.icon > [class^="icon-"], span.icon > [class*=" icon-"] { cursor: default; }
 </tr>
 </tbody>
 </table>
-
 </div>
 <div class="sect3">
 <h4 id="_responses_26">Responses</h4>
 <table class="tableblock frame-all grid-all" style="width:100%; ">
 <colgroup>
-<col style="width:33%;">
-<col style="width:33%;">
-<col style="width:33%;"> 
+<col style="width:33%;"/>
+<col style="width:33%;"/>
+<col style="width:33%;"/>
 </colgroup>
 <thead>
 <tr>
@@ -3768,11 +3910,10 @@ span.icon > [class^="icon-"], span.icon > [class*=" icon-"] { cursor: default; }
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">200</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">success</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="../definitions#_v1beta1_role">v1beta1.Role</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="definitions.html#_v1beta1_role">v1beta1.Role</a></p></td>
 </tr>
 </tbody>
 </table>
-
 </div>
 <div class="sect3">
 <h4 id="_consumes_26">Consumes</h4>
@@ -3822,12 +3963,12 @@ span.icon > [class^="icon-"], span.icon > [class*=" icon-"] { cursor: default; }
 <h4 id="_parameters_26">Parameters</h4>
 <table class="tableblock frame-all grid-all" style="width:100%; ">
 <colgroup>
-<col style="width:16%;">
-<col style="width:16%;">
-<col style="width:16%;">
-<col style="width:16%;">
-<col style="width:16%;">
-<col style="width:16%;"> 
+<col style="width:16%;"/>
+<col style="width:16%;"/>
+<col style="width:16%;"/>
+<col style="width:16%;"/>
+<col style="width:16%;"/>
+<col style="width:16%;"/>
 </colgroup>
 <thead>
 <tr>
@@ -3853,7 +3994,7 @@ span.icon > [class^="icon-"], span.icon > [class*=" icon-"] { cursor: default; }
 <td class="tableblock halign-left valign-top"><p class="tableblock">body</p></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">true</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="../definitions#_v1beta1_role">v1beta1.Role</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="definitions.html#_v1beta1_role">v1beta1.Role</a></p></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
@@ -3874,15 +4015,14 @@ span.icon > [class^="icon-"], span.icon > [class*=" icon-"] { cursor: default; }
 </tr>
 </tbody>
 </table>
-
 </div>
 <div class="sect3">
 <h4 id="_responses_27">Responses</h4>
 <table class="tableblock frame-all grid-all" style="width:100%; ">
 <colgroup>
-<col style="width:33%;">
-<col style="width:33%;">
-<col style="width:33%;"> 
+<col style="width:33%;"/>
+<col style="width:33%;"/>
+<col style="width:33%;"/>
 </colgroup>
 <thead>
 <tr>
@@ -3895,11 +4035,15 @@ span.icon > [class^="icon-"], span.icon > [class*=" icon-"] { cursor: default; }
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">200</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">success</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="../definitions#_v1beta1_role">v1beta1.Role</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="definitions.html#_v1beta1_role">v1beta1.Role</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">201</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Created</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="definitions.html#_v1beta1_role">v1beta1.Role</a></p></td>
 </tr>
 </tbody>
 </table>
-
 </div>
 <div class="sect3">
 <h4 id="_consumes_27">Consumes</h4>
@@ -3949,12 +4093,12 @@ span.icon > [class^="icon-"], span.icon > [class*=" icon-"] { cursor: default; }
 <h4 id="_parameters_27">Parameters</h4>
 <table class="tableblock frame-all grid-all" style="width:100%; ">
 <colgroup>
-<col style="width:16%;">
-<col style="width:16%;">
-<col style="width:16%;">
-<col style="width:16%;">
-<col style="width:16%;">
-<col style="width:16%;"> 
+<col style="width:16%;"/>
+<col style="width:16%;"/>
+<col style="width:16%;"/>
+<col style="width:16%;"/>
+<col style="width:16%;"/>
+<col style="width:16%;"/>
 </colgroup>
 <thead>
 <tr>
@@ -3980,7 +4124,7 @@ span.icon > [class^="icon-"], span.icon > [class*=" icon-"] { cursor: default; }
 <td class="tableblock halign-left valign-top"><p class="tableblock">body</p></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">true</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="../definitions#_v1_deleteoptions">v1.DeleteOptions</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="definitions.html#_v1_deleteoptions">v1.DeleteOptions</a></p></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
@@ -3994,7 +4138,7 @@ span.icon > [class^="icon-"], span.icon > [class*=" icon-"] { cursor: default; }
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">QueryParameter</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">orphanDependents</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the "orphan" finalizer will be added to/removed from the object&#8217;s finalizers list. Either this field or PropagationPolicy may be set, but not both.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the "orphan" finalizer will be added to/removed from the object’s finalizers list. Either this field or PropagationPolicy may be set, but not both.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">false</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">boolean</p></td>
 <td class="tableblock halign-left valign-top"></td>
@@ -4002,7 +4146,7 @@ span.icon > [class^="icon-"], span.icon > [class*=" icon-"] { cursor: default; }
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">QueryParameter</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">propagationPolicy</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: <em>Orphan</em> - orphan the dependents; <em>Background</em> - allow the garbage collector to delete the dependents in the background; <em>Foreground</em> - a cascading policy that deletes all dependents in the foreground.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">false</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
 <td class="tableblock halign-left valign-top"></td>
@@ -4025,15 +4169,14 @@ span.icon > [class^="icon-"], span.icon > [class*=" icon-"] { cursor: default; }
 </tr>
 </tbody>
 </table>
-
 </div>
 <div class="sect3">
 <h4 id="_responses_28">Responses</h4>
 <table class="tableblock frame-all grid-all" style="width:100%; ">
 <colgroup>
-<col style="width:33%;">
-<col style="width:33%;">
-<col style="width:33%;"> 
+<col style="width:33%;"/>
+<col style="width:33%;"/>
+<col style="width:33%;"/>
 </colgroup>
 <thead>
 <tr>
@@ -4046,11 +4189,10 @@ span.icon > [class^="icon-"], span.icon > [class*=" icon-"] { cursor: default; }
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">200</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">success</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="../definitions#_v1_status">v1.Status</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="definitions.html#_v1_status">v1.Status</a></p></td>
 </tr>
 </tbody>
 </table>
-
 </div>
 <div class="sect3">
 <h4 id="_consumes_28">Consumes</h4>
@@ -4100,12 +4242,12 @@ span.icon > [class^="icon-"], span.icon > [class*=" icon-"] { cursor: default; }
 <h4 id="_parameters_28">Parameters</h4>
 <table class="tableblock frame-all grid-all" style="width:100%; ">
 <colgroup>
-<col style="width:16%;">
-<col style="width:16%;">
-<col style="width:16%;">
-<col style="width:16%;">
-<col style="width:16%;">
-<col style="width:16%;"> 
+<col style="width:16%;"/>
+<col style="width:16%;"/>
+<col style="width:16%;"/>
+<col style="width:16%;"/>
+<col style="width:16%;"/>
+<col style="width:16%;"/>
 </colgroup>
 <thead>
 <tr>
@@ -4131,7 +4273,7 @@ span.icon > [class^="icon-"], span.icon > [class*=" icon-"] { cursor: default; }
 <td class="tableblock halign-left valign-top"><p class="tableblock">body</p></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">true</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="../definitions#_v1_patch">v1.Patch</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="definitions.html#_v1_patch">v1.Patch</a></p></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
@@ -4152,15 +4294,14 @@ span.icon > [class^="icon-"], span.icon > [class*=" icon-"] { cursor: default; }
 </tr>
 </tbody>
 </table>
-
 </div>
 <div class="sect3">
 <h4 id="_responses_29">Responses</h4>
 <table class="tableblock frame-all grid-all" style="width:100%; ">
 <colgroup>
-<col style="width:33%;">
-<col style="width:33%;">
-<col style="width:33%;"> 
+<col style="width:33%;"/>
+<col style="width:33%;"/>
+<col style="width:33%;"/>
 </colgroup>
 <thead>
 <tr>
@@ -4173,11 +4314,10 @@ span.icon > [class^="icon-"], span.icon > [class*=" icon-"] { cursor: default; }
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">200</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">success</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="../definitions#_v1beta1_role">v1beta1.Role</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="definitions.html#_v1beta1_role">v1beta1.Role</a></p></td>
 </tr>
 </tbody>
 </table>
-
 </div>
 <div class="sect3">
 <h4 id="_consumes_29">Consumes</h4>
@@ -4233,12 +4373,12 @@ span.icon > [class^="icon-"], span.icon > [class*=" icon-"] { cursor: default; }
 <h4 id="_parameters_29">Parameters</h4>
 <table class="tableblock frame-all grid-all" style="width:100%; ">
 <colgroup>
-<col style="width:16%;">
-<col style="width:16%;">
-<col style="width:16%;">
-<col style="width:16%;">
-<col style="width:16%;">
-<col style="width:16%;"> 
+<col style="width:16%;"/>
+<col style="width:16%;"/>
+<col style="width:16%;"/>
+<col style="width:16%;"/>
+<col style="width:16%;"/>
+<col style="width:16%;"/>
 </colgroup>
 <thead>
 <tr>
@@ -4294,7 +4434,7 @@ span.icon > [class^="icon-"], span.icon > [class*=" icon-"] { cursor: default; }
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">QueryParameter</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">resourceVersion</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">When specified with a watch call, shows changes that occur after that particular version of a resource. Defaults to changes from the beginning of history. When specified for list: - if unset, then the result is returned from remote storage based on quorum-read flag; - if it&#8217;s 0, then we simply return what we currently have in cache, no guarantee; - if set to non zero, then the result is at least as fresh as given rv.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">When specified with a watch call, shows changes that occur after that particular version of a resource. Defaults to changes from the beginning of history. When specified for list: - if unset, then the result is returned from remote storage based on quorum-read flag; - if it’s 0, then we simply return what we currently have in cache, no guarantee; - if set to non zero, then the result is at least as fresh as given rv.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">false</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
 <td class="tableblock halign-left valign-top"></td>
@@ -4307,17 +4447,33 @@ span.icon > [class^="icon-"], span.icon > [class*=" icon-"] { cursor: default; }
 <td class="tableblock halign-left valign-top"><p class="tableblock">integer (int32)</p></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">QueryParameter</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">limit</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">limit is a maximum number of responses to return for a list call. If more items exist, the server will set the <code>continue</code> field on the list metadata to a value that can be used with the same initial query to retrieve the next set of results. Setting a limit may return fewer than the requested amount of items (up to zero items) in the event all requested objects are filtered out and clients should only use the presence of the continue field to determine whether more results are available. Servers may choose not to support the limit argument and will return all of the available results. If limit is specified and the continue field is empty, clients may assume that no more results are available. This field is not supported if watch is true.
+</p><p class="tableblock">The server guarantees that the objects returned when using continue will be identical to issuing a single list call without a limit - that is, no objects created, modified, or deleted after the first request is issued will be included in any subsequent continued requests. This is sometimes referred to as a consistent snapshot, and ensures that a client that is using limit to receive smaller chunks of a very large result can ensure they see all possible objects. If objects are updated during a chunked list the version of the object that was present at the time the first list result was calculated is returned.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">false</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">integer (int32)</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">QueryParameter</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">continue</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The continue option should be set when retrieving more results from the server. Since this value is server defined, clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server the server will respond with a 410 ResourceExpired error indicating the client must restart their list without the continue field. This field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">false</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
 </tbody>
 </table>
-
 </div>
 <div class="sect3">
 <h4 id="_responses_30">Responses</h4>
 <table class="tableblock frame-all grid-all" style="width:100%; ">
 <colgroup>
-<col style="width:33%;">
-<col style="width:33%;">
-<col style="width:33%;"> 
+<col style="width:33%;"/>
+<col style="width:33%;"/>
+<col style="width:33%;"/>
 </colgroup>
 <thead>
 <tr>
@@ -4330,11 +4486,10 @@ span.icon > [class^="icon-"], span.icon > [class*=" icon-"] { cursor: default; }
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">200</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">success</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="../definitions#_v1beta1_rolebindinglist">v1beta1.RoleBindingList</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="definitions.html#_v1beta1_rolebindinglist">v1beta1.RoleBindingList</a></p></td>
 </tr>
 </tbody>
 </table>
-
 </div>
 <div class="sect3">
 <h4 id="_consumes_30">Consumes</h4>
@@ -4390,12 +4545,12 @@ span.icon > [class^="icon-"], span.icon > [class*=" icon-"] { cursor: default; }
 <h4 id="_parameters_30">Parameters</h4>
 <table class="tableblock frame-all grid-all" style="width:100%; ">
 <colgroup>
-<col style="width:16%;">
-<col style="width:16%;">
-<col style="width:16%;">
-<col style="width:16%;">
-<col style="width:16%;">
-<col style="width:16%;"> 
+<col style="width:16%;"/>
+<col style="width:16%;"/>
+<col style="width:16%;"/>
+<col style="width:16%;"/>
+<col style="width:16%;"/>
+<col style="width:16%;"/>
 </colgroup>
 <thead>
 <tr>
@@ -4451,7 +4606,7 @@ span.icon > [class^="icon-"], span.icon > [class*=" icon-"] { cursor: default; }
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">QueryParameter</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">resourceVersion</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">When specified with a watch call, shows changes that occur after that particular version of a resource. Defaults to changes from the beginning of history. When specified for list: - if unset, then the result is returned from remote storage based on quorum-read flag; - if it&#8217;s 0, then we simply return what we currently have in cache, no guarantee; - if set to non zero, then the result is at least as fresh as given rv.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">When specified with a watch call, shows changes that occur after that particular version of a resource. Defaults to changes from the beginning of history. When specified for list: - if unset, then the result is returned from remote storage based on quorum-read flag; - if it’s 0, then we simply return what we currently have in cache, no guarantee; - if set to non zero, then the result is at least as fresh as given rv.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">false</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
 <td class="tableblock halign-left valign-top"></td>
@@ -4464,17 +4619,33 @@ span.icon > [class^="icon-"], span.icon > [class*=" icon-"] { cursor: default; }
 <td class="tableblock halign-left valign-top"><p class="tableblock">integer (int32)</p></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">QueryParameter</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">limit</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">limit is a maximum number of responses to return for a list call. If more items exist, the server will set the <code>continue</code> field on the list metadata to a value that can be used with the same initial query to retrieve the next set of results. Setting a limit may return fewer than the requested amount of items (up to zero items) in the event all requested objects are filtered out and clients should only use the presence of the continue field to determine whether more results are available. Servers may choose not to support the limit argument and will return all of the available results. If limit is specified and the continue field is empty, clients may assume that no more results are available. This field is not supported if watch is true.
+</p><p class="tableblock">The server guarantees that the objects returned when using continue will be identical to issuing a single list call without a limit - that is, no objects created, modified, or deleted after the first request is issued will be included in any subsequent continued requests. This is sometimes referred to as a consistent snapshot, and ensures that a client that is using limit to receive smaller chunks of a very large result can ensure they see all possible objects. If objects are updated during a chunked list the version of the object that was present at the time the first list result was calculated is returned.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">false</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">integer (int32)</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">QueryParameter</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">continue</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The continue option should be set when retrieving more results from the server. Since this value is server defined, clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server the server will respond with a 410 ResourceExpired error indicating the client must restart their list without the continue field. This field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">false</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
 </tbody>
 </table>
-
 </div>
 <div class="sect3">
 <h4 id="_responses_31">Responses</h4>
 <table class="tableblock frame-all grid-all" style="width:100%; ">
 <colgroup>
-<col style="width:33%;">
-<col style="width:33%;">
-<col style="width:33%;"> 
+<col style="width:33%;"/>
+<col style="width:33%;"/>
+<col style="width:33%;"/>
 </colgroup>
 <thead>
 <tr>
@@ -4487,11 +4658,10 @@ span.icon > [class^="icon-"], span.icon > [class*=" icon-"] { cursor: default; }
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">200</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">success</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="../definitions#_v1beta1_rolelist">v1beta1.RoleList</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="definitions.html#_v1beta1_rolelist">v1beta1.RoleList</a></p></td>
 </tr>
 </tbody>
 </table>
-
 </div>
 <div class="sect3">
 <h4 id="_consumes_31">Consumes</h4>
@@ -4547,12 +4717,12 @@ span.icon > [class^="icon-"], span.icon > [class*=" icon-"] { cursor: default; }
 <h4 id="_parameters_31">Parameters</h4>
 <table class="tableblock frame-all grid-all" style="width:100%; ">
 <colgroup>
-<col style="width:16%;">
-<col style="width:16%;">
-<col style="width:16%;">
-<col style="width:16%;">
-<col style="width:16%;">
-<col style="width:16%;"> 
+<col style="width:16%;"/>
+<col style="width:16%;"/>
+<col style="width:16%;"/>
+<col style="width:16%;"/>
+<col style="width:16%;"/>
+<col style="width:16%;"/>
 </colgroup>
 <thead>
 <tr>
@@ -4608,7 +4778,7 @@ span.icon > [class^="icon-"], span.icon > [class*=" icon-"] { cursor: default; }
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">QueryParameter</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">resourceVersion</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">When specified with a watch call, shows changes that occur after that particular version of a resource. Defaults to changes from the beginning of history. When specified for list: - if unset, then the result is returned from remote storage based on quorum-read flag; - if it&#8217;s 0, then we simply return what we currently have in cache, no guarantee; - if set to non zero, then the result is at least as fresh as given rv.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">When specified with a watch call, shows changes that occur after that particular version of a resource. Defaults to changes from the beginning of history. When specified for list: - if unset, then the result is returned from remote storage based on quorum-read flag; - if it’s 0, then we simply return what we currently have in cache, no guarantee; - if set to non zero, then the result is at least as fresh as given rv.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">false</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
 <td class="tableblock halign-left valign-top"></td>
@@ -4621,17 +4791,33 @@ span.icon > [class^="icon-"], span.icon > [class*=" icon-"] { cursor: default; }
 <td class="tableblock halign-left valign-top"><p class="tableblock">integer (int32)</p></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">QueryParameter</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">limit</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">limit is a maximum number of responses to return for a list call. If more items exist, the server will set the <code>continue</code> field on the list metadata to a value that can be used with the same initial query to retrieve the next set of results. Setting a limit may return fewer than the requested amount of items (up to zero items) in the event all requested objects are filtered out and clients should only use the presence of the continue field to determine whether more results are available. Servers may choose not to support the limit argument and will return all of the available results. If limit is specified and the continue field is empty, clients may assume that no more results are available. This field is not supported if watch is true.
+</p><p class="tableblock">The server guarantees that the objects returned when using continue will be identical to issuing a single list call without a limit - that is, no objects created, modified, or deleted after the first request is issued will be included in any subsequent continued requests. This is sometimes referred to as a consistent snapshot, and ensures that a client that is using limit to receive smaller chunks of a very large result can ensure they see all possible objects. If objects are updated during a chunked list the version of the object that was present at the time the first list result was calculated is returned.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">false</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">integer (int32)</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">QueryParameter</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">continue</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The continue option should be set when retrieving more results from the server. Since this value is server defined, clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server the server will respond with a 410 ResourceExpired error indicating the client must restart their list without the continue field. This field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">false</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
 </tbody>
 </table>
-
 </div>
 <div class="sect3">
 <h4 id="_responses_32">Responses</h4>
 <table class="tableblock frame-all grid-all" style="width:100%; ">
 <colgroup>
-<col style="width:33%;">
-<col style="width:33%;">
-<col style="width:33%;"> 
+<col style="width:33%;"/>
+<col style="width:33%;"/>
+<col style="width:33%;"/>
 </colgroup>
 <thead>
 <tr>
@@ -4644,11 +4830,10 @@ span.icon > [class^="icon-"], span.icon > [class*=" icon-"] { cursor: default; }
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">200</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">success</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="../definitions#_v1_watchevent">v1.WatchEvent</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="definitions.html#_v1_watchevent">v1.WatchEvent</a></p></td>
 </tr>
 </tbody>
 </table>
-
 </div>
 <div class="sect3">
 <h4 id="_consumes_32">Consumes</h4>
@@ -4704,12 +4889,12 @@ span.icon > [class^="icon-"], span.icon > [class*=" icon-"] { cursor: default; }
 <h4 id="_parameters_32">Parameters</h4>
 <table class="tableblock frame-all grid-all" style="width:100%; ">
 <colgroup>
-<col style="width:16%;">
-<col style="width:16%;">
-<col style="width:16%;">
-<col style="width:16%;">
-<col style="width:16%;">
-<col style="width:16%;"> 
+<col style="width:16%;"/>
+<col style="width:16%;"/>
+<col style="width:16%;"/>
+<col style="width:16%;"/>
+<col style="width:16%;"/>
+<col style="width:16%;"/>
 </colgroup>
 <thead>
 <tr>
@@ -4765,7 +4950,7 @@ span.icon > [class^="icon-"], span.icon > [class*=" icon-"] { cursor: default; }
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">QueryParameter</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">resourceVersion</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">When specified with a watch call, shows changes that occur after that particular version of a resource. Defaults to changes from the beginning of history. When specified for list: - if unset, then the result is returned from remote storage based on quorum-read flag; - if it&#8217;s 0, then we simply return what we currently have in cache, no guarantee; - if set to non zero, then the result is at least as fresh as given rv.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">When specified with a watch call, shows changes that occur after that particular version of a resource. Defaults to changes from the beginning of history. When specified for list: - if unset, then the result is returned from remote storage based on quorum-read flag; - if it’s 0, then we simply return what we currently have in cache, no guarantee; - if set to non zero, then the result is at least as fresh as given rv.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">false</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
 <td class="tableblock halign-left valign-top"></td>
@@ -4779,6 +4964,23 @@ span.icon > [class^="icon-"], span.icon > [class*=" icon-"] { cursor: default; }
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">QueryParameter</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">limit</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">limit is a maximum number of responses to return for a list call. If more items exist, the server will set the <code>continue</code> field on the list metadata to a value that can be used with the same initial query to retrieve the next set of results. Setting a limit may return fewer than the requested amount of items (up to zero items) in the event all requested objects are filtered out and clients should only use the presence of the continue field to determine whether more results are available. Servers may choose not to support the limit argument and will return all of the available results. If limit is specified and the continue field is empty, clients may assume that no more results are available. This field is not supported if watch is true.
+</p><p class="tableblock">The server guarantees that the objects returned when using continue will be identical to issuing a single list call without a limit - that is, no objects created, modified, or deleted after the first request is issued will be included in any subsequent continued requests. This is sometimes referred to as a consistent snapshot, and ensures that a client that is using limit to receive smaller chunks of a very large result can ensure they see all possible objects. If objects are updated during a chunked list the version of the object that was present at the time the first list result was calculated is returned.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">false</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">integer (int32)</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">QueryParameter</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">continue</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The continue option should be set when retrieving more results from the server. Since this value is server defined, clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server the server will respond with a 410 ResourceExpired error indicating the client must restart their list without the continue field. This field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">false</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">PathParameter</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">name</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">name of the ClusterRoleBinding</p></td>
@@ -4788,15 +4990,14 @@ span.icon > [class^="icon-"], span.icon > [class*=" icon-"] { cursor: default; }
 </tr>
 </tbody>
 </table>
-
 </div>
 <div class="sect3">
 <h4 id="_responses_33">Responses</h4>
 <table class="tableblock frame-all grid-all" style="width:100%; ">
 <colgroup>
-<col style="width:33%;">
-<col style="width:33%;">
-<col style="width:33%;"> 
+<col style="width:33%;"/>
+<col style="width:33%;"/>
+<col style="width:33%;"/>
 </colgroup>
 <thead>
 <tr>
@@ -4809,11 +5010,10 @@ span.icon > [class^="icon-"], span.icon > [class*=" icon-"] { cursor: default; }
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">200</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">success</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="../definitions#_v1_watchevent">v1.WatchEvent</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="definitions.html#_v1_watchevent">v1.WatchEvent</a></p></td>
 </tr>
 </tbody>
 </table>
-
 </div>
 <div class="sect3">
 <h4 id="_consumes_33">Consumes</h4>
@@ -4869,12 +5069,12 @@ span.icon > [class^="icon-"], span.icon > [class*=" icon-"] { cursor: default; }
 <h4 id="_parameters_33">Parameters</h4>
 <table class="tableblock frame-all grid-all" style="width:100%; ">
 <colgroup>
-<col style="width:16%;">
-<col style="width:16%;">
-<col style="width:16%;">
-<col style="width:16%;">
-<col style="width:16%;">
-<col style="width:16%;"> 
+<col style="width:16%;"/>
+<col style="width:16%;"/>
+<col style="width:16%;"/>
+<col style="width:16%;"/>
+<col style="width:16%;"/>
+<col style="width:16%;"/>
 </colgroup>
 <thead>
 <tr>
@@ -4930,7 +5130,7 @@ span.icon > [class^="icon-"], span.icon > [class*=" icon-"] { cursor: default; }
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">QueryParameter</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">resourceVersion</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">When specified with a watch call, shows changes that occur after that particular version of a resource. Defaults to changes from the beginning of history. When specified for list: - if unset, then the result is returned from remote storage based on quorum-read flag; - if it&#8217;s 0, then we simply return what we currently have in cache, no guarantee; - if set to non zero, then the result is at least as fresh as given rv.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">When specified with a watch call, shows changes that occur after that particular version of a resource. Defaults to changes from the beginning of history. When specified for list: - if unset, then the result is returned from remote storage based on quorum-read flag; - if it’s 0, then we simply return what we currently have in cache, no guarantee; - if set to non zero, then the result is at least as fresh as given rv.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">false</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
 <td class="tableblock halign-left valign-top"></td>
@@ -4943,17 +5143,33 @@ span.icon > [class^="icon-"], span.icon > [class*=" icon-"] { cursor: default; }
 <td class="tableblock halign-left valign-top"><p class="tableblock">integer (int32)</p></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">QueryParameter</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">limit</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">limit is a maximum number of responses to return for a list call. If more items exist, the server will set the <code>continue</code> field on the list metadata to a value that can be used with the same initial query to retrieve the next set of results. Setting a limit may return fewer than the requested amount of items (up to zero items) in the event all requested objects are filtered out and clients should only use the presence of the continue field to determine whether more results are available. Servers may choose not to support the limit argument and will return all of the available results. If limit is specified and the continue field is empty, clients may assume that no more results are available. This field is not supported if watch is true.
+</p><p class="tableblock">The server guarantees that the objects returned when using continue will be identical to issuing a single list call without a limit - that is, no objects created, modified, or deleted after the first request is issued will be included in any subsequent continued requests. This is sometimes referred to as a consistent snapshot, and ensures that a client that is using limit to receive smaller chunks of a very large result can ensure they see all possible objects. If objects are updated during a chunked list the version of the object that was present at the time the first list result was calculated is returned.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">false</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">integer (int32)</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">QueryParameter</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">continue</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The continue option should be set when retrieving more results from the server. Since this value is server defined, clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server the server will respond with a 410 ResourceExpired error indicating the client must restart their list without the continue field. This field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">false</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
 </tbody>
 </table>
-
 </div>
 <div class="sect3">
 <h4 id="_responses_34">Responses</h4>
 <table class="tableblock frame-all grid-all" style="width:100%; ">
 <colgroup>
-<col style="width:33%;">
-<col style="width:33%;">
-<col style="width:33%;"> 
+<col style="width:33%;"/>
+<col style="width:33%;"/>
+<col style="width:33%;"/>
 </colgroup>
 <thead>
 <tr>
@@ -4966,11 +5182,10 @@ span.icon > [class^="icon-"], span.icon > [class*=" icon-"] { cursor: default; }
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">200</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">success</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="../definitions#_v1_watchevent">v1.WatchEvent</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="definitions.html#_v1_watchevent">v1.WatchEvent</a></p></td>
 </tr>
 </tbody>
 </table>
-
 </div>
 <div class="sect3">
 <h4 id="_consumes_34">Consumes</h4>
@@ -5026,12 +5241,12 @@ span.icon > [class^="icon-"], span.icon > [class*=" icon-"] { cursor: default; }
 <h4 id="_parameters_34">Parameters</h4>
 <table class="tableblock frame-all grid-all" style="width:100%; ">
 <colgroup>
-<col style="width:16%;">
-<col style="width:16%;">
-<col style="width:16%;">
-<col style="width:16%;">
-<col style="width:16%;">
-<col style="width:16%;"> 
+<col style="width:16%;"/>
+<col style="width:16%;"/>
+<col style="width:16%;"/>
+<col style="width:16%;"/>
+<col style="width:16%;"/>
+<col style="width:16%;"/>
 </colgroup>
 <thead>
 <tr>
@@ -5087,7 +5302,7 @@ span.icon > [class^="icon-"], span.icon > [class*=" icon-"] { cursor: default; }
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">QueryParameter</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">resourceVersion</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">When specified with a watch call, shows changes that occur after that particular version of a resource. Defaults to changes from the beginning of history. When specified for list: - if unset, then the result is returned from remote storage based on quorum-read flag; - if it&#8217;s 0, then we simply return what we currently have in cache, no guarantee; - if set to non zero, then the result is at least as fresh as given rv.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">When specified with a watch call, shows changes that occur after that particular version of a resource. Defaults to changes from the beginning of history. When specified for list: - if unset, then the result is returned from remote storage based on quorum-read flag; - if it’s 0, then we simply return what we currently have in cache, no guarantee; - if set to non zero, then the result is at least as fresh as given rv.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">false</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
 <td class="tableblock halign-left valign-top"></td>
@@ -5101,6 +5316,23 @@ span.icon > [class^="icon-"], span.icon > [class*=" icon-"] { cursor: default; }
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">QueryParameter</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">limit</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">limit is a maximum number of responses to return for a list call. If more items exist, the server will set the <code>continue</code> field on the list metadata to a value that can be used with the same initial query to retrieve the next set of results. Setting a limit may return fewer than the requested amount of items (up to zero items) in the event all requested objects are filtered out and clients should only use the presence of the continue field to determine whether more results are available. Servers may choose not to support the limit argument and will return all of the available results. If limit is specified and the continue field is empty, clients may assume that no more results are available. This field is not supported if watch is true.
+</p><p class="tableblock">The server guarantees that the objects returned when using continue will be identical to issuing a single list call without a limit - that is, no objects created, modified, or deleted after the first request is issued will be included in any subsequent continued requests. This is sometimes referred to as a consistent snapshot, and ensures that a client that is using limit to receive smaller chunks of a very large result can ensure they see all possible objects. If objects are updated during a chunked list the version of the object that was present at the time the first list result was calculated is returned.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">false</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">integer (int32)</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">QueryParameter</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">continue</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The continue option should be set when retrieving more results from the server. Since this value is server defined, clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server the server will respond with a 410 ResourceExpired error indicating the client must restart their list without the continue field. This field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">false</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">PathParameter</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">name</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">name of the ClusterRole</p></td>
@@ -5110,15 +5342,14 @@ span.icon > [class^="icon-"], span.icon > [class*=" icon-"] { cursor: default; }
 </tr>
 </tbody>
 </table>
-
 </div>
 <div class="sect3">
 <h4 id="_responses_35">Responses</h4>
 <table class="tableblock frame-all grid-all" style="width:100%; ">
 <colgroup>
-<col style="width:33%;">
-<col style="width:33%;">
-<col style="width:33%;"> 
+<col style="width:33%;"/>
+<col style="width:33%;"/>
+<col style="width:33%;"/>
 </colgroup>
 <thead>
 <tr>
@@ -5131,11 +5362,10 @@ span.icon > [class^="icon-"], span.icon > [class*=" icon-"] { cursor: default; }
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">200</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">success</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="../definitions#_v1_watchevent">v1.WatchEvent</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="definitions.html#_v1_watchevent">v1.WatchEvent</a></p></td>
 </tr>
 </tbody>
 </table>
-
 </div>
 <div class="sect3">
 <h4 id="_consumes_35">Consumes</h4>
@@ -5191,12 +5421,12 @@ span.icon > [class^="icon-"], span.icon > [class*=" icon-"] { cursor: default; }
 <h4 id="_parameters_35">Parameters</h4>
 <table class="tableblock frame-all grid-all" style="width:100%; ">
 <colgroup>
-<col style="width:16%;">
-<col style="width:16%;">
-<col style="width:16%;">
-<col style="width:16%;">
-<col style="width:16%;">
-<col style="width:16%;"> 
+<col style="width:16%;"/>
+<col style="width:16%;"/>
+<col style="width:16%;"/>
+<col style="width:16%;"/>
+<col style="width:16%;"/>
+<col style="width:16%;"/>
 </colgroup>
 <thead>
 <tr>
@@ -5252,7 +5482,7 @@ span.icon > [class^="icon-"], span.icon > [class*=" icon-"] { cursor: default; }
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">QueryParameter</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">resourceVersion</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">When specified with a watch call, shows changes that occur after that particular version of a resource. Defaults to changes from the beginning of history. When specified for list: - if unset, then the result is returned from remote storage based on quorum-read flag; - if it&#8217;s 0, then we simply return what we currently have in cache, no guarantee; - if set to non zero, then the result is at least as fresh as given rv.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">When specified with a watch call, shows changes that occur after that particular version of a resource. Defaults to changes from the beginning of history. When specified for list: - if unset, then the result is returned from remote storage based on quorum-read flag; - if it’s 0, then we simply return what we currently have in cache, no guarantee; - if set to non zero, then the result is at least as fresh as given rv.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">false</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
 <td class="tableblock halign-left valign-top"></td>
@@ -5266,6 +5496,23 @@ span.icon > [class^="icon-"], span.icon > [class*=" icon-"] { cursor: default; }
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">QueryParameter</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">limit</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">limit is a maximum number of responses to return for a list call. If more items exist, the server will set the <code>continue</code> field on the list metadata to a value that can be used with the same initial query to retrieve the next set of results. Setting a limit may return fewer than the requested amount of items (up to zero items) in the event all requested objects are filtered out and clients should only use the presence of the continue field to determine whether more results are available. Servers may choose not to support the limit argument and will return all of the available results. If limit is specified and the continue field is empty, clients may assume that no more results are available. This field is not supported if watch is true.
+</p><p class="tableblock">The server guarantees that the objects returned when using continue will be identical to issuing a single list call without a limit - that is, no objects created, modified, or deleted after the first request is issued will be included in any subsequent continued requests. This is sometimes referred to as a consistent snapshot, and ensures that a client that is using limit to receive smaller chunks of a very large result can ensure they see all possible objects. If objects are updated during a chunked list the version of the object that was present at the time the first list result was calculated is returned.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">false</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">integer (int32)</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">QueryParameter</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">continue</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The continue option should be set when retrieving more results from the server. Since this value is server defined, clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server the server will respond with a 410 ResourceExpired error indicating the client must restart their list without the continue field. This field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">false</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">PathParameter</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">namespace</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">object name and auth scope, such as for teams and projects</p></td>
@@ -5275,15 +5522,14 @@ span.icon > [class^="icon-"], span.icon > [class*=" icon-"] { cursor: default; }
 </tr>
 </tbody>
 </table>
-
 </div>
 <div class="sect3">
 <h4 id="_responses_36">Responses</h4>
 <table class="tableblock frame-all grid-all" style="width:100%; ">
 <colgroup>
-<col style="width:33%;">
-<col style="width:33%;">
-<col style="width:33%;"> 
+<col style="width:33%;"/>
+<col style="width:33%;"/>
+<col style="width:33%;"/>
 </colgroup>
 <thead>
 <tr>
@@ -5296,11 +5542,10 @@ span.icon > [class^="icon-"], span.icon > [class*=" icon-"] { cursor: default; }
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">200</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">success</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="../definitions#_v1_watchevent">v1.WatchEvent</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="definitions.html#_v1_watchevent">v1.WatchEvent</a></p></td>
 </tr>
 </tbody>
 </table>
-
 </div>
 <div class="sect3">
 <h4 id="_consumes_36">Consumes</h4>
@@ -5356,12 +5601,12 @@ span.icon > [class^="icon-"], span.icon > [class*=" icon-"] { cursor: default; }
 <h4 id="_parameters_36">Parameters</h4>
 <table class="tableblock frame-all grid-all" style="width:100%; ">
 <colgroup>
-<col style="width:16%;">
-<col style="width:16%;">
-<col style="width:16%;">
-<col style="width:16%;">
-<col style="width:16%;">
-<col style="width:16%;"> 
+<col style="width:16%;"/>
+<col style="width:16%;"/>
+<col style="width:16%;"/>
+<col style="width:16%;"/>
+<col style="width:16%;"/>
+<col style="width:16%;"/>
 </colgroup>
 <thead>
 <tr>
@@ -5417,7 +5662,7 @@ span.icon > [class^="icon-"], span.icon > [class*=" icon-"] { cursor: default; }
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">QueryParameter</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">resourceVersion</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">When specified with a watch call, shows changes that occur after that particular version of a resource. Defaults to changes from the beginning of history. When specified for list: - if unset, then the result is returned from remote storage based on quorum-read flag; - if it&#8217;s 0, then we simply return what we currently have in cache, no guarantee; - if set to non zero, then the result is at least as fresh as given rv.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">When specified with a watch call, shows changes that occur after that particular version of a resource. Defaults to changes from the beginning of history. When specified for list: - if unset, then the result is returned from remote storage based on quorum-read flag; - if it’s 0, then we simply return what we currently have in cache, no guarantee; - if set to non zero, then the result is at least as fresh as given rv.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">false</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
 <td class="tableblock halign-left valign-top"></td>
@@ -5428,6 +5673,23 @@ span.icon > [class^="icon-"], span.icon > [class*=" icon-"] { cursor: default; }
 <td class="tableblock halign-left valign-top"><p class="tableblock">Timeout for the list/watch call.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">false</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">integer (int32)</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">QueryParameter</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">limit</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">limit is a maximum number of responses to return for a list call. If more items exist, the server will set the <code>continue</code> field on the list metadata to a value that can be used with the same initial query to retrieve the next set of results. Setting a limit may return fewer than the requested amount of items (up to zero items) in the event all requested objects are filtered out and clients should only use the presence of the continue field to determine whether more results are available. Servers may choose not to support the limit argument and will return all of the available results. If limit is specified and the continue field is empty, clients may assume that no more results are available. This field is not supported if watch is true.
+</p><p class="tableblock">The server guarantees that the objects returned when using continue will be identical to issuing a single list call without a limit - that is, no objects created, modified, or deleted after the first request is issued will be included in any subsequent continued requests. This is sometimes referred to as a consistent snapshot, and ensures that a client that is using limit to receive smaller chunks of a very large result can ensure they see all possible objects. If objects are updated during a chunked list the version of the object that was present at the time the first list result was calculated is returned.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">false</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">integer (int32)</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">QueryParameter</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">continue</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The continue option should be set when retrieving more results from the server. Since this value is server defined, clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server the server will respond with a 410 ResourceExpired error indicating the client must restart their list without the continue field. This field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">false</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
@@ -5448,15 +5710,14 @@ span.icon > [class^="icon-"], span.icon > [class*=" icon-"] { cursor: default; }
 </tr>
 </tbody>
 </table>
-
 </div>
 <div class="sect3">
 <h4 id="_responses_37">Responses</h4>
 <table class="tableblock frame-all grid-all" style="width:100%; ">
 <colgroup>
-<col style="width:33%;">
-<col style="width:33%;">
-<col style="width:33%;"> 
+<col style="width:33%;"/>
+<col style="width:33%;"/>
+<col style="width:33%;"/>
 </colgroup>
 <thead>
 <tr>
@@ -5469,11 +5730,10 @@ span.icon > [class^="icon-"], span.icon > [class*=" icon-"] { cursor: default; }
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">200</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">success</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="../definitions#_v1_watchevent">v1.WatchEvent</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="definitions.html#_v1_watchevent">v1.WatchEvent</a></p></td>
 </tr>
 </tbody>
 </table>
-
 </div>
 <div class="sect3">
 <h4 id="_consumes_37">Consumes</h4>
@@ -5529,12 +5789,12 @@ span.icon > [class^="icon-"], span.icon > [class*=" icon-"] { cursor: default; }
 <h4 id="_parameters_37">Parameters</h4>
 <table class="tableblock frame-all grid-all" style="width:100%; ">
 <colgroup>
-<col style="width:16%;">
-<col style="width:16%;">
-<col style="width:16%;">
-<col style="width:16%;">
-<col style="width:16%;">
-<col style="width:16%;"> 
+<col style="width:16%;"/>
+<col style="width:16%;"/>
+<col style="width:16%;"/>
+<col style="width:16%;"/>
+<col style="width:16%;"/>
+<col style="width:16%;"/>
 </colgroup>
 <thead>
 <tr>
@@ -5590,7 +5850,7 @@ span.icon > [class^="icon-"], span.icon > [class*=" icon-"] { cursor: default; }
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">QueryParameter</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">resourceVersion</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">When specified with a watch call, shows changes that occur after that particular version of a resource. Defaults to changes from the beginning of history. When specified for list: - if unset, then the result is returned from remote storage based on quorum-read flag; - if it&#8217;s 0, then we simply return what we currently have in cache, no guarantee; - if set to non zero, then the result is at least as fresh as given rv.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">When specified with a watch call, shows changes that occur after that particular version of a resource. Defaults to changes from the beginning of history. When specified for list: - if unset, then the result is returned from remote storage based on quorum-read flag; - if it’s 0, then we simply return what we currently have in cache, no guarantee; - if set to non zero, then the result is at least as fresh as given rv.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">false</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
 <td class="tableblock halign-left valign-top"></td>
@@ -5604,6 +5864,23 @@ span.icon > [class^="icon-"], span.icon > [class*=" icon-"] { cursor: default; }
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">QueryParameter</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">limit</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">limit is a maximum number of responses to return for a list call. If more items exist, the server will set the <code>continue</code> field on the list metadata to a value that can be used with the same initial query to retrieve the next set of results. Setting a limit may return fewer than the requested amount of items (up to zero items) in the event all requested objects are filtered out and clients should only use the presence of the continue field to determine whether more results are available. Servers may choose not to support the limit argument and will return all of the available results. If limit is specified and the continue field is empty, clients may assume that no more results are available. This field is not supported if watch is true.
+</p><p class="tableblock">The server guarantees that the objects returned when using continue will be identical to issuing a single list call without a limit - that is, no objects created, modified, or deleted after the first request is issued will be included in any subsequent continued requests. This is sometimes referred to as a consistent snapshot, and ensures that a client that is using limit to receive smaller chunks of a very large result can ensure they see all possible objects. If objects are updated during a chunked list the version of the object that was present at the time the first list result was calculated is returned.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">false</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">integer (int32)</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">QueryParameter</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">continue</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The continue option should be set when retrieving more results from the server. Since this value is server defined, clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server the server will respond with a 410 ResourceExpired error indicating the client must restart their list without the continue field. This field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">false</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">PathParameter</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">namespace</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">object name and auth scope, such as for teams and projects</p></td>
@@ -5613,15 +5890,14 @@ span.icon > [class^="icon-"], span.icon > [class*=" icon-"] { cursor: default; }
 </tr>
 </tbody>
 </table>
-
 </div>
 <div class="sect3">
 <h4 id="_responses_38">Responses</h4>
 <table class="tableblock frame-all grid-all" style="width:100%; ">
 <colgroup>
-<col style="width:33%;">
-<col style="width:33%;">
-<col style="width:33%;"> 
+<col style="width:33%;"/>
+<col style="width:33%;"/>
+<col style="width:33%;"/>
 </colgroup>
 <thead>
 <tr>
@@ -5634,11 +5910,10 @@ span.icon > [class^="icon-"], span.icon > [class*=" icon-"] { cursor: default; }
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">200</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">success</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="../definitions#_v1_watchevent">v1.WatchEvent</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="definitions.html#_v1_watchevent">v1.WatchEvent</a></p></td>
 </tr>
 </tbody>
 </table>
-
 </div>
 <div class="sect3">
 <h4 id="_consumes_38">Consumes</h4>
@@ -5694,12 +5969,12 @@ span.icon > [class^="icon-"], span.icon > [class*=" icon-"] { cursor: default; }
 <h4 id="_parameters_38">Parameters</h4>
 <table class="tableblock frame-all grid-all" style="width:100%; ">
 <colgroup>
-<col style="width:16%;">
-<col style="width:16%;">
-<col style="width:16%;">
-<col style="width:16%;">
-<col style="width:16%;">
-<col style="width:16%;"> 
+<col style="width:16%;"/>
+<col style="width:16%;"/>
+<col style="width:16%;"/>
+<col style="width:16%;"/>
+<col style="width:16%;"/>
+<col style="width:16%;"/>
 </colgroup>
 <thead>
 <tr>
@@ -5755,7 +6030,7 @@ span.icon > [class^="icon-"], span.icon > [class*=" icon-"] { cursor: default; }
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">QueryParameter</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">resourceVersion</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">When specified with a watch call, shows changes that occur after that particular version of a resource. Defaults to changes from the beginning of history. When specified for list: - if unset, then the result is returned from remote storage based on quorum-read flag; - if it&#8217;s 0, then we simply return what we currently have in cache, no guarantee; - if set to non zero, then the result is at least as fresh as given rv.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">When specified with a watch call, shows changes that occur after that particular version of a resource. Defaults to changes from the beginning of history. When specified for list: - if unset, then the result is returned from remote storage based on quorum-read flag; - if it’s 0, then we simply return what we currently have in cache, no guarantee; - if set to non zero, then the result is at least as fresh as given rv.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">false</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
 <td class="tableblock halign-left valign-top"></td>
@@ -5766,6 +6041,23 @@ span.icon > [class^="icon-"], span.icon > [class*=" icon-"] { cursor: default; }
 <td class="tableblock halign-left valign-top"><p class="tableblock">Timeout for the list/watch call.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">false</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">integer (int32)</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">QueryParameter</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">limit</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">limit is a maximum number of responses to return for a list call. If more items exist, the server will set the <code>continue</code> field on the list metadata to a value that can be used with the same initial query to retrieve the next set of results. Setting a limit may return fewer than the requested amount of items (up to zero items) in the event all requested objects are filtered out and clients should only use the presence of the continue field to determine whether more results are available. Servers may choose not to support the limit argument and will return all of the available results. If limit is specified and the continue field is empty, clients may assume that no more results are available. This field is not supported if watch is true.
+</p><p class="tableblock">The server guarantees that the objects returned when using continue will be identical to issuing a single list call without a limit - that is, no objects created, modified, or deleted after the first request is issued will be included in any subsequent continued requests. This is sometimes referred to as a consistent snapshot, and ensures that a client that is using limit to receive smaller chunks of a very large result can ensure they see all possible objects. If objects are updated during a chunked list the version of the object that was present at the time the first list result was calculated is returned.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">false</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">integer (int32)</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">QueryParameter</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">continue</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The continue option should be set when retrieving more results from the server. Since this value is server defined, clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server the server will respond with a 410 ResourceExpired error indicating the client must restart their list without the continue field. This field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">false</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
@@ -5786,15 +6078,14 @@ span.icon > [class^="icon-"], span.icon > [class*=" icon-"] { cursor: default; }
 </tr>
 </tbody>
 </table>
-
 </div>
 <div class="sect3">
 <h4 id="_responses_39">Responses</h4>
 <table class="tableblock frame-all grid-all" style="width:100%; ">
 <colgroup>
-<col style="width:33%;">
-<col style="width:33%;">
-<col style="width:33%;"> 
+<col style="width:33%;"/>
+<col style="width:33%;"/>
+<col style="width:33%;"/>
 </colgroup>
 <thead>
 <tr>
@@ -5807,11 +6098,10 @@ span.icon > [class^="icon-"], span.icon > [class*=" icon-"] { cursor: default; }
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">200</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">success</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="../definitions#_v1_watchevent">v1.WatchEvent</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="definitions.html#_v1_watchevent">v1.WatchEvent</a></p></td>
 </tr>
 </tbody>
 </table>
-
 </div>
 <div class="sect3">
 <h4 id="_consumes_39">Consumes</h4>
@@ -5867,12 +6157,12 @@ span.icon > [class^="icon-"], span.icon > [class*=" icon-"] { cursor: default; }
 <h4 id="_parameters_39">Parameters</h4>
 <table class="tableblock frame-all grid-all" style="width:100%; ">
 <colgroup>
-<col style="width:16%;">
-<col style="width:16%;">
-<col style="width:16%;">
-<col style="width:16%;">
-<col style="width:16%;">
-<col style="width:16%;"> 
+<col style="width:16%;"/>
+<col style="width:16%;"/>
+<col style="width:16%;"/>
+<col style="width:16%;"/>
+<col style="width:16%;"/>
+<col style="width:16%;"/>
 </colgroup>
 <thead>
 <tr>
@@ -5928,7 +6218,7 @@ span.icon > [class^="icon-"], span.icon > [class*=" icon-"] { cursor: default; }
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">QueryParameter</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">resourceVersion</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">When specified with a watch call, shows changes that occur after that particular version of a resource. Defaults to changes from the beginning of history. When specified for list: - if unset, then the result is returned from remote storage based on quorum-read flag; - if it&#8217;s 0, then we simply return what we currently have in cache, no guarantee; - if set to non zero, then the result is at least as fresh as given rv.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">When specified with a watch call, shows changes that occur after that particular version of a resource. Defaults to changes from the beginning of history. When specified for list: - if unset, then the result is returned from remote storage based on quorum-read flag; - if it’s 0, then we simply return what we currently have in cache, no guarantee; - if set to non zero, then the result is at least as fresh as given rv.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">false</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
 <td class="tableblock halign-left valign-top"></td>
@@ -5941,17 +6231,33 @@ span.icon > [class^="icon-"], span.icon > [class*=" icon-"] { cursor: default; }
 <td class="tableblock halign-left valign-top"><p class="tableblock">integer (int32)</p></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">QueryParameter</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">limit</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">limit is a maximum number of responses to return for a list call. If more items exist, the server will set the <code>continue</code> field on the list metadata to a value that can be used with the same initial query to retrieve the next set of results. Setting a limit may return fewer than the requested amount of items (up to zero items) in the event all requested objects are filtered out and clients should only use the presence of the continue field to determine whether more results are available. Servers may choose not to support the limit argument and will return all of the available results. If limit is specified and the continue field is empty, clients may assume that no more results are available. This field is not supported if watch is true.
+</p><p class="tableblock">The server guarantees that the objects returned when using continue will be identical to issuing a single list call without a limit - that is, no objects created, modified, or deleted after the first request is issued will be included in any subsequent continued requests. This is sometimes referred to as a consistent snapshot, and ensures that a client that is using limit to receive smaller chunks of a very large result can ensure they see all possible objects. If objects are updated during a chunked list the version of the object that was present at the time the first list result was calculated is returned.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">false</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">integer (int32)</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">QueryParameter</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">continue</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The continue option should be set when retrieving more results from the server. Since this value is server defined, clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server the server will respond with a 410 ResourceExpired error indicating the client must restart their list without the continue field. This field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">false</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
 </tbody>
 </table>
-
 </div>
 <div class="sect3">
 <h4 id="_responses_40">Responses</h4>
 <table class="tableblock frame-all grid-all" style="width:100%; ">
 <colgroup>
-<col style="width:33%;">
-<col style="width:33%;">
-<col style="width:33%;"> 
+<col style="width:33%;"/>
+<col style="width:33%;"/>
+<col style="width:33%;"/>
 </colgroup>
 <thead>
 <tr>
@@ -5964,11 +6270,10 @@ span.icon > [class^="icon-"], span.icon > [class*=" icon-"] { cursor: default; }
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">200</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">success</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="../definitions#_v1_watchevent">v1.WatchEvent</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="definitions.html#_v1_watchevent">v1.WatchEvent</a></p></td>
 </tr>
 </tbody>
 </table>
-
 </div>
 <div class="sect3">
 <h4 id="_consumes_40">Consumes</h4>
@@ -6024,12 +6329,12 @@ span.icon > [class^="icon-"], span.icon > [class*=" icon-"] { cursor: default; }
 <h4 id="_parameters_40">Parameters</h4>
 <table class="tableblock frame-all grid-all" style="width:100%; ">
 <colgroup>
-<col style="width:16%;">
-<col style="width:16%;">
-<col style="width:16%;">
-<col style="width:16%;">
-<col style="width:16%;">
-<col style="width:16%;"> 
+<col style="width:16%;"/>
+<col style="width:16%;"/>
+<col style="width:16%;"/>
+<col style="width:16%;"/>
+<col style="width:16%;"/>
+<col style="width:16%;"/>
 </colgroup>
 <thead>
 <tr>
@@ -6085,7 +6390,7 @@ span.icon > [class^="icon-"], span.icon > [class*=" icon-"] { cursor: default; }
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">QueryParameter</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">resourceVersion</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">When specified with a watch call, shows changes that occur after that particular version of a resource. Defaults to changes from the beginning of history. When specified for list: - if unset, then the result is returned from remote storage based on quorum-read flag; - if it&#8217;s 0, then we simply return what we currently have in cache, no guarantee; - if set to non zero, then the result is at least as fresh as given rv.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">When specified with a watch call, shows changes that occur after that particular version of a resource. Defaults to changes from the beginning of history. When specified for list: - if unset, then the result is returned from remote storage based on quorum-read flag; - if it’s 0, then we simply return what we currently have in cache, no guarantee; - if set to non zero, then the result is at least as fresh as given rv.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">false</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
 <td class="tableblock halign-left valign-top"></td>
@@ -6098,17 +6403,33 @@ span.icon > [class^="icon-"], span.icon > [class*=" icon-"] { cursor: default; }
 <td class="tableblock halign-left valign-top"><p class="tableblock">integer (int32)</p></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">QueryParameter</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">limit</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">limit is a maximum number of responses to return for a list call. If more items exist, the server will set the <code>continue</code> field on the list metadata to a value that can be used with the same initial query to retrieve the next set of results. Setting a limit may return fewer than the requested amount of items (up to zero items) in the event all requested objects are filtered out and clients should only use the presence of the continue field to determine whether more results are available. Servers may choose not to support the limit argument and will return all of the available results. If limit is specified and the continue field is empty, clients may assume that no more results are available. This field is not supported if watch is true.
+</p><p class="tableblock">The server guarantees that the objects returned when using continue will be identical to issuing a single list call without a limit - that is, no objects created, modified, or deleted after the first request is issued will be included in any subsequent continued requests. This is sometimes referred to as a consistent snapshot, and ensures that a client that is using limit to receive smaller chunks of a very large result can ensure they see all possible objects. If objects are updated during a chunked list the version of the object that was present at the time the first list result was calculated is returned.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">false</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">integer (int32)</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">QueryParameter</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">continue</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The continue option should be set when retrieving more results from the server. Since this value is server defined, clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server the server will respond with a 410 ResourceExpired error indicating the client must restart their list without the continue field. This field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">false</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
 </tbody>
 </table>
-
 </div>
 <div class="sect3">
 <h4 id="_responses_41">Responses</h4>
 <table class="tableblock frame-all grid-all" style="width:100%; ">
 <colgroup>
-<col style="width:33%;">
-<col style="width:33%;">
-<col style="width:33%;"> 
+<col style="width:33%;"/>
+<col style="width:33%;"/>
+<col style="width:33%;"/>
 </colgroup>
 <thead>
 <tr>
@@ -6121,11 +6442,10 @@ span.icon > [class^="icon-"], span.icon > [class*=" icon-"] { cursor: default; }
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">200</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">success</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="../definitions#_v1_watchevent">v1.WatchEvent</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="definitions.html#_v1_watchevent">v1.WatchEvent</a></p></td>
 </tr>
 </tbody>
 </table>
-
 </div>
 <div class="sect3">
 <h4 id="_consumes_41">Consumes</h4>
@@ -6175,7 +6495,6 @@ span.icon > [class^="icon-"], span.icon > [class*=" icon-"] { cursor: default; }
 </div>
 <div id="footer">
 <div id="footer-text">
-
 </div>
 </div>
 </body>
