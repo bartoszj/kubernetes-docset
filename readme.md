@@ -14,4 +14,10 @@ In the Kubernetes direcotry:
 
 The `api-reference` is copied from kubernetes's source code, under `docs/` directory.
 
-run `gen.py` and `build-doc.sh` to build the docset.
+Run `gen.py` and `build-doc.sh` to build the docset.
+
+Or in one command:
+
+```
+rm -r Kubernetes.docset Kubernetes.tgz; python gen.py && ./build-doc.sh && tar --exclude='.DS_Store' -cvzf Kubernetes.tgz Kubernetes.docset
+```
