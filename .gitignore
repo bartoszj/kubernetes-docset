@@ -31,5 +31,9 @@ env
 .env
 
 .idea
+docSet.dsidx
+docSet.dsidx-journal
+build/
+kubernetes/
 Kubernetes.docset
-*.tgz
+Kubernetes.tgz

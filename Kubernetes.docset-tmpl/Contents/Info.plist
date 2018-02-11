@@ -18,5 +18,7 @@
     <true/>
     <key>isJavaScriptEnabled</key>
     <true/>
+    <key>DashDocSetFallbackURL</key>
+    <string>https://kubernetes.io/</string>
 </dict>
 </plist>

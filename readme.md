@@ -12,12 +12,8 @@ In the Kubernetes direcotry:
 
 ## How to generate the docset
 
-The `api-reference` is copied from kubernetes's source code, under `docs/` directory.
+Run this command bo tuilb documentation for given version:
 
-Run `gen.py` and `build-doc.sh` to build the docset.
-
-Or in one command:
-
-```
-python gen.py && ./build-doc.sh
+```bash
+./build.sh <version>
 ```

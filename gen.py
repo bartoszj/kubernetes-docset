@@ -5,7 +5,7 @@ import sqlite3
 from bs4 import BeautifulSoup
 
 
-DOC_API_REFERENCE = 'Documents/api-reference'
+DOC_API_REFERENCE = "Kubernetes.docset/Contents/Resources/Documents/api-reference"
 
 
 def fix_links(filename):
