@@ -32,3 +32,4 @@ cp -r "docSet.dsidx" "Kubernetes.docset/Contents/Resources/"
 
 tar --exclude='.DS_Store' -cvzf "Kubernetes.tgz" "Kubernetes.docset" &>/dev/null
 mv "Kubernetes.tgz" "${BUILD_PATH}"
+rm -rf "Kubernetes.docset"

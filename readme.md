@@ -2,6 +2,12 @@
 
 Python 3.6 required.
 
+```bash
+python3.6 -m venv env
+source env/bin/activate
+pip install -r requirements.txt
+```
+
 <!-- ## Populate Kubernetes's documentation
 
 In the Kubernetes direcotry:
