@@ -3,12 +3,13 @@
 import os
 import sqlite3
 from bs4 import BeautifulSoup
+from typing import List, Tuple
 
 
 DOC_API_REFERENCE = "Kubernetes.docset/Contents/Resources/Documents/api-reference"
 
 
-def fix_links(filename):
+def fix_links(filename: str):
     doc_path = os.path.join(DOC_API_REFERENCE, filename)
     changed_content = None
 
@@ -32,7 +33,31 @@ def fix_links(filename):
             f.write(changed_content)
 
 
-def gen_index(cur, filename, typ):
+def add_sections(filename: str, typ: str):
+    doc_path = os.path.join(DOC_API_REFERENCE, filename)
+    changed_content: str = None
+
+    with open(doc_path) as doc:
+        soup = BeautifulSoup(doc, "html.parser")
+        h3 = soup.find_all("h3")
+        changed = False
+        for h in h3:
+            # <a name="//apple_ref/cpp/Entry Type/Entry Name" class="dashAnchor"></a>
+            section_tag = soup.new_tag("a")
+            section_tag["name"] = f"//apple_ref/cpp/{typ}/{h.string}"
+            section_tag["class"] = "dashAnchor"
+            h.insert_before(section_tag)
+            changed = True
+
+        if changed:
+            changed_content = str(soup)
+
+    if changed_content is not None:
+        with open(doc_path, "w") as f:
+            f.write(changed_content)
+
+
+def gen_index(cur, filename: str, typ: str):
     doc = open(os.path.join(DOC_API_REFERENCE, filename))
     soup = BeautifulSoup(doc, "html.parser")
     group, version = parse_group_version_from_filename(filename)
@@ -50,15 +75,15 @@ def gen_index(cur, filename, typ):
             continue
 
 
-def iterate_dir(dir_name):
-    files = []
+def iterate_dir(dir_name) -> List[str]:
+    files: List[str] = []
     for dir_path, dir_names, file_names in os.walk(dir_name):
         if len(dir_names) == 0:
             files.extend([os.path.join(dir_path, i) for i in file_names])
     return files
 
 
-def parse_group_version_from_filename(filename):
+def parse_group_version_from_filename(filename: str) -> Tuple[str, str]:
     spl = filename.split("/")
     if len(spl) == 3:
         group = spl[0]
@@ -85,10 +110,13 @@ def main():
 
     for filename in iterate_dir(DOC_API_REFERENCE):
         relative_path = filename[len(DOC_API_REFERENCE) + 1:]
+        print(f"Building: {relative_path}")
         if relative_path.endswith("definitions.html"):
+            add_sections(relative_path, "Type")
             gen_index(cur, relative_path, "Type")
         elif relative_path.endswith("operations.html"):
             fix_links(relative_path)
+            add_sections(relative_path, "Interface")
             gen_index(cur, relative_path, "Interface")
 
     db.commit()
