@@ -1,9 +1,9 @@
 ## Python
 
-Python 3.6 required.
+Python 3.7 required.
 
 ```bash
-python3.6 -m venv env
+python3.7 -m venv env
 source env/bin/activate
 pip install -r requirements.txt
 ```
