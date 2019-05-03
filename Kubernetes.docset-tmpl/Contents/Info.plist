@@ -15,7 +15,7 @@
 	<key>DashDocSetFamily</key>
 	<string>dashtoc</string>
 	<key>dashIndexFilePath</key>
-	<string>api-reference/v1/definitions.html</string>
+	<string>index.html</string>
 	<key>isDashDocset</key>
 	<true/>
 	<key>isJavaScriptEnabled</key>

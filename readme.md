@@ -8,18 +8,17 @@ source env/bin/activate
 pip install -r requirements.txt
 ```
 
-<!-- ## Populate Kubernetes's documentation
+## Swagger (optional)
 
-In the Kubernetes direcotry:
-
-```bash
-./hack/generate-docs.sh
-``` -->
+https://kubernetes.io/docs/contribute/generate-ref-docs/contribute-upstream/#generating-the-openapi-spec-and-related-files
+https://kubernetes.io/docs/contribute/generate-ref-docs/kubernetes-api/
 
 ## How to generate the docset
 
-Run this command bo tuilb documentation for given version:
+Run this command to build documentation for given version:
 
 ```bash
 ./build.sh <version>
+# Example:
+./build.sh 1.14.0
 ```

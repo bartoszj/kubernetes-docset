@@ -3,97 +3,124 @@
 import os
 import sqlite3
 from bs4 import BeautifulSoup
-from typing import List, Tuple
 
 
-DOC_API_REFERENCE = "Kubernetes.docset/Contents/Resources/Documents/api-reference"
+DOC_API_REFERENCE = "Kubernetes.docset/Contents/Resources/Documents/index.html"
 
 
-def fix_links(filename: str):
-    doc_path = os.path.join(DOC_API_REFERENCE, filename)
-    changed_content = None
+def clean():
+    with open(DOC_API_REFERENCE) as doc:
+        soup = BeautifulSoup(doc, "lxml")
 
-    with open(doc_path) as doc:
-        soup = BeautifulSoup(doc, "html.parser")
+        # Remove sidebar
+        div = soup.find("div", id="sidebar-wrapper")
+        if div is not None:
+            div.decompose()
 
-        def find_definitions(href):
-            return href.startswith("../definitions#")
+        # Remove `page-content-wrapper` id
+        page_content_wrapper = soup.find("div", id="page-content-wrapper")
+        if page_content_wrapper is not None:
+            del page_content_wrapper["id"]
 
-        changed = False
-        a_tags = soup.find_all("a", href=find_definitions)
-        for a in a_tags:
-            changed = True
-            a["href"] = a["href"].replace("../definitions#", "definitions.html#")
+        # Fix script paths
+        scripts = soup.findAll("script")
+        for script in scripts:
+            if script["src"].startswith("/"):
+                script["src"] = script["src"][1:]
 
-        if changed:
-            changed_content = str(soup)
+        changed_content = str(soup)
 
-    if changed_content is not None:
-        with open(doc_path, "w") as f:
-            f.write(changed_content)
+    with open(DOC_API_REFERENCE, "w") as f:
+        f.write(changed_content)
 
 
-def add_sections(filename: str, typ: str):
-    doc_path = os.path.join(DOC_API_REFERENCE, filename)
-    changed_content: str = None
+def gen_index(cur):
+    t = "Type"
+    basename = os.path.basename(DOC_API_REFERENCE)
+    blocked = [
+        "api overview", "workloads apis", "service apis", "config and storage apis", "metadata apis",
+        "cluster apis", "definitions", "old api versions", "resource categories", "resource objects",
+        "resource operations", "write operations", "create", "patch", "replace", "delete", "delete collection",
+        "read operations", "read", "list", "list all namespaces", "watch", "watch list", "watch list all namespaces",
+        "status operations", "patch status", "read status", "replace status", "misc operations", "read scale",
+        "replace scale", "patch scale", "create eviction", "proxy operations", "create connect portforward",
+        "create connect proxy", "create connect proxy path", "delete connect proxy", "delete connect proxy path",
+        "get connect portforward", "get connect proxy", "get connect proxy path", "head connect proxy",
+        "head connect proxy path", "replace connect proxy", "replace connect proxy path", "read log", "rollback",
+        "http request", "path parameters", "query parameters", "body parameters", "response"]
 
-    with open(doc_path) as doc:
-        soup = BeautifulSoup(doc, "html.parser")
-        h3 = soup.find_all("h3")
-        changed = False
-        for h in h3:
-            # <a name="//apple_ref/cpp/Entry Type/Entry Name" class="dashAnchor"></a>
+    with open(DOC_API_REFERENCE) as doc:
+        soup = BeautifulSoup(doc, "lxml")
+
+        # Links from navigation menu
+        # def find_elements(tag):
+        #     return tag.name == "li" \
+        #            and tag.has_attr("class") \
+        #            and "nav-level-1" in tag["class"] \
+        #            and "strong-nav" not in tag["class"]
+        #
+        # # Find all objects:
+        # objects = soup.find_all(find_elements)
+        # i = 0
+        # c = len(objects)
+        # for o in objects:
+        #     i += 1
+        #
+        #     # Split text to extract data
+        #     s = o.string.split(" ")
+        #     name = s[0]
+        #     version = s[1]
+        #     api = s[2]
+        #     fullname = f"{name} {version}"
+        #     href_id = o.a['href'][1:]
+        #     # print(f"{name} {version} \tid:{href_id}")
+        #
+        #     # For each object find a tag
+        #     h1 = soup.find("h1", id=href_id)
+        #     # print(h1)
+        #
+        #     # Add a special `a` tag
+        #     section_tag = soup.new_tag("a")
+        #     section_tag["name"] = f"//apple_ref/cpp/{t}/{fullname}"
+        #     section_tag["class"] = "dashAnchor"
+        #     # h1.insert_before(section_tag)
+        #
+        #     # Insert to index
+        #     path = f"{basename}#{href_id}"
+        #     cur.execute('INSERT OR IGNORE INTO searchIndex(name, type, path) VALUES (?,?,?)', (fullname, t, path))
+        #     print(f"{i}/{c}")
+
+        objects = soup.findAll(["h1", "h2", "h3"])
+        objects = [o for o in objects if o.string.lower() not in blocked]
+        i = 0
+        c = len(objects)
+        for o in objects:
+            i += 1
+
+            # Split text to extract data
+            s = o.string.split(" ")
+            name = s[0]
+            version = s[1]
+            api = s[2]
+            fullname = f"{name} {version}"
+            object_id = o['id']
+            # print(f"{name} {version} \tid:{id}")
+
+            # Add a special `a` tag
             section_tag = soup.new_tag("a")
-            section_tag["name"] = f"//apple_ref/cpp/{typ}/{h.string}"
+            section_tag["name"] = f"//apple_ref/cpp/{t}/{fullname}"
             section_tag["class"] = "dashAnchor"
-            h.insert_before(section_tag)
-            changed = True
+            o.insert_before(section_tag)
 
-        if changed:
-            changed_content = str(soup)
+            # Insert to index
+            path = f"{basename}#{object_id}"
+            cur.execute('INSERT OR IGNORE INTO searchIndex(name, type, path) VALUES (?,?,?)', (fullname, t, path))
+            # print(f"{i}/{c}")
 
-    if changed_content is not None:
-        with open(doc_path, "w") as f:
-            f.write(changed_content)
+        changed_content = str(soup)
 
-
-def gen_index(cur, filename: str, typ: str):
-    doc = open(os.path.join(DOC_API_REFERENCE, filename))
-    soup = BeautifulSoup(doc, "html.parser")
-    group, version = parse_group_version_from_filename(filename)
-
-    for div in soup.find_all('div', {'class': "sect2"}):
-        try:
-            name = div.h3.string
-            if len(group) == 0:
-                fullname = "%s/%s" % (version, name)
-            else:
-                fullname = "%s/%s/%s" % (group, version, name)
-            path = os.path.join("api-reference", filename) + "#" + div.h3.attrs["id"]
-            cur.execute('INSERT OR IGNORE INTO searchIndex(name, type, path) VALUES (?,?,?)', (fullname, typ, path))
-        except:
-            continue
-
-
-def iterate_dir(dir_name) -> List[str]:
-    files: List[str] = []
-    for dir_path, dir_names, file_names in os.walk(dir_name):
-        if len(dir_names) == 0:
-            files.extend([os.path.join(dir_path, i) for i in file_names])
-    return files
-
-
-def parse_group_version_from_filename(filename: str) -> Tuple[str, str]:
-    spl = filename.split("/")
-    if len(spl) == 3:
-        group = spl[0]
-        version = spl[1]
-    elif len(spl) == 2:
-        group = ""
-        version = spl[0]
-    else:
-        raise Exception("bad filename: %s", filename)
-    return group, version
+    with open(DOC_API_REFERENCE, "w") as f:
+        f.write(changed_content)
 
 
 def main():
@@ -108,16 +135,8 @@ def main():
     cur.execute('CREATE TABLE searchIndex(id INTEGER PRIMARY KEY, name TEXT, type TEXT, path TEXT);')
     cur.execute('CREATE UNIQUE INDEX anchor ON searchIndex (name, type, path);')
 
-    for filename in iterate_dir(DOC_API_REFERENCE):
-        relative_path = filename[len(DOC_API_REFERENCE) + 1:]
-        print(f"Building: {relative_path}")
-        if relative_path.endswith("definitions.html"):
-            add_sections(relative_path, "Type")
-            gen_index(cur, relative_path, "Type")
-        elif relative_path.endswith("operations.html"):
-            fix_links(relative_path)
-            add_sections(relative_path, "Interface")
-            gen_index(cur, relative_path, "Interface")
+    gen_index(cur)
+    clean()
 
     db.commit()
     cur.execute("VACUUM;")
