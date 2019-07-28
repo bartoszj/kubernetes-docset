@@ -44,7 +44,7 @@ git checkout v${tag}
 
 # Generage API
 # https://kubernetes.io/docs/contribute/generate-ref-docs/kubernetes-api/
-cd ${REF_DOC_PATH}
+cd "${REF_DOC_PATH}"
 git checkout -- .
 sed -e "s|WEBROOT=.*|WEBROOT=../../kubernetes/website|g" \
     -e "s|K8SROOT=.*|K8SROOT=../../kubernetes/kubernetes|g" \
