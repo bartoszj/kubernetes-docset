@@ -47,7 +47,8 @@ def gen_index(cur):
         "create connect proxy", "create connect proxy path", "delete connect proxy", "delete connect proxy path",
         "get connect portforward", "get connect proxy", "get connect proxy path", "head connect proxy",
         "head connect proxy path", "replace connect proxy", "replace connect proxy path", "read log", "rollback",
-        "http request", "path parameters", "query parameters", "body parameters", "response"]
+        "http request", "path parameters", "query parameters", "body parameters", "response", "workloads", "metadata",
+        "cluster"]
 
     with open(DOC_API_REFERENCE) as doc:
         soup = BeautifulSoup(doc, "lxml")
