@@ -61,6 +61,18 @@ make copyapi
 # Copy files
 cd "${CWD}"
 rsync -ah --stats --delete "${WEBSITE_PATH}/static/docs/reference/generated/kubernetes-api/v${RELEASE}/" "Kubernetes.docset/Contents/Resources/Documents/"
+mkdir -p "Kubernetes.docset/Contents/Resources/Documents/css"
+mkdir -p "Kubernetes.docset/Contents/Resources/Documents/js"
+mkdir -p "Kubernetes.docset/Contents/Resources/Documents/fonts"
+cp ${WEBSITE_PATH}/static/css/style_apiref.css "Kubernetes.docset/Contents/Resources/Documents/css/"
+cp ${WEBSITE_PATH}/static/css/bootstrap-*.min.css "Kubernetes.docset/Contents/Resources/Documents/css/"
+cp ${WEBSITE_PATH}/static/css/fontawesome-*.min.css "Kubernetes.docset/Contents/Resources/Documents/css/"
+cp ${WEBSITE_PATH}/static/fonts/fontawesome-webfont.woff "Kubernetes.docset/Contents/Resources/Documents/fonts/"
+cp ${WEBSITE_PATH}/static/fonts/fontawesome-webfont.woff2 "Kubernetes.docset/Contents/Resources/Documents/fonts/"
+cp ${WEBSITE_PATH}/static/js/jquery-*.min.js "Kubernetes.docset/Contents/Resources/Documents/js/"
+cp ${WEBSITE_PATH}/static/js/jquery.scrollTo-*.min.js "Kubernetes.docset/Contents/Resources/Documents/js/"
+cp ${WEBSITE_PATH}/static/js/bootstrap-*.min.js "Kubernetes.docset/Contents/Resources/Documents/js/"
+cp ${WEBSITE_PATH}/static/js/scroll-apiref.js "Kubernetes.docset/Contents/Resources/Documents/js/"
 
 # Generate docs
 python gen.py

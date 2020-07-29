@@ -22,11 +22,31 @@ def clean():
         if page_content_wrapper is not None:
             del page_content_wrapper["id"]
 
+        # Remove 'copyright' classes
+        div = soup.find("div", class_="copyright")
+        if div is not None:
+            div.decompose()
+
+        # Remove 'text-right' classes
+        div = soup.find("div", class_="text-right")
+        if div is not None:
+            div.decompose()
+
         # Fix script paths
-        scripts = soup.findAll("script")
+        scripts = soup.find_all("script")
         for script in scripts:
             if script["src"].startswith("/"):
                 script["src"] = script["src"][1:]
+        
+        # Fix link paths
+        links = soup.find_all("link")
+        for link in links:
+            if link["href"].startswith("/"):
+                link["href"] = link["href"][1:]
+
+        # Fix `body-content` css
+        body = soup.find("div", class_="body-content")
+        body['style'] = "margin-left: 0px; max-width: 100%; flex-basis: 100%;"
 
         changed_content = str(soup)
 
@@ -91,7 +111,7 @@ def gen_index(cur):
         #     cur.execute('INSERT OR IGNORE INTO searchIndex(name, type, path) VALUES (?,?,?)', (fullname, t, path))
         #     print(f"{i}/{c}")
 
-        objects = soup.findAll(["h1", "h2", "h3"])
+        objects = soup.find_all(["h1", "h2", "h3"])
         objects = [o for o in objects if o.string.lower() not in blocked]
         i = 0
         c = len(objects)
