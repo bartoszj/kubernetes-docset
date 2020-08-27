@@ -8,7 +8,8 @@ if [ -z $tag ]; then
     echo '"tag" must be specified'
     exit 1
 fi
-RELEASE=${tag%.*}
+RELEASE=${tag}
+RELEASE_SHORT=${tag%.*}
 
 # Paths
 CWD=$(pwd)
@@ -60,7 +61,7 @@ make copyapi
 
 # Copy files
 cd "${CWD}"
-rsync -ah --stats --delete "${WEBSITE_PATH}/static/docs/reference/generated/kubernetes-api/v${RELEASE}/" "Kubernetes.docset/Contents/Resources/Documents/"
+rsync -ah --stats --delete "${WEBSITE_PATH}/static/docs/reference/generated/kubernetes-api/v${RELEASE_SHORT}/" "Kubernetes.docset/Contents/Resources/Documents/"
 mkdir -p "Kubernetes.docset/Contents/Resources/Documents/css"
 mkdir -p "Kubernetes.docset/Contents/Resources/Documents/js"
 mkdir -p "Kubernetes.docset/Contents/Resources/Documents/fonts"
