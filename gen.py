@@ -58,7 +58,7 @@ def gen_index(cur):
     t = "Type"
     basename = os.path.basename(DOC_API_REFERENCE)
     blocked = [
-        "api overview", "workloads apis", "service apis", "config and storage apis", "metadata apis",
+        "api overview", "api groups", "workloads apis", "service apis", "config and storage apis", "metadata apis",
         "cluster apis", "definitions", "old api versions", "resource categories", "resource objects",
         "resource operations", "write operations", "create", "patch", "replace", "delete", "delete collection",
         "read operations", "read", "list", "list all namespaces", "watch", "watch list", "watch list all namespaces",
