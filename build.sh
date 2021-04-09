@@ -14,7 +14,7 @@ RELEASE_SHORT=${tag%.*}
 # Paths
 CWD=$(pwd)
 export GOPATH=${CWD}/go
-BUILD_PATH="${CWD}/build/$tag"
+BUILD_PATH="${CWD}/build/${tag}"
 KUBERNETES_PATH="${GOPATH}/src/github.com/kubernetes/kubernetes"
 WEBSITE_PATH="${GOPATH}/src/github.com/kubernetes/website"
 REF_DOC_PATH="${GOPATH}/src/github.com/kubernetes-sigs/reference-docs"
@@ -33,25 +33,30 @@ rm -rf "Kubernetes.docset"
 cp -r "Kubernetes.docset-tmpl" "Kubernetes.docset"
 
 # Update Go:
-go get -d -u -f github.com/kubernetes/kubernetes || true
-go get -d -u -f github.com/kubernetes/website || true
-if [ -d ${REF_DOC_PATH} ]; then
-  git -C ${REF_DOC_PATH} reset --hard
-fi
-go get -d -u -f github.com/kubernetes-sigs/reference-docs
-go get ${GOPATH}/src/github.com/kubernetes-sigs/reference-docs/gen-apidocs
+git clone https://github.com/kubernetes/kubernetes ${KUBERNETES_PATH} || true
+git -C ${KUBERNETES_PATH} fetch --all --prune
+git -C ${KUBERNETES_PATH} clean -fdx
+git -C ${KUBERNETES_PATH} checkout -- .
+git -C ${KUBERNETES_PATH} checkout v${tag}
+
+git clone https://github.com/kubernetes/website ${WEBSITE_PATH} || true
+git -C ${WEBSITE_PATH} fetch --all --prune
+git -C ${WEBSITE_PATH} clean -fdx
+git -C ${WEBSITE_PATH} checkout -- .
+git -C ${WEBSITE_PATH} pull -- .
+
+git clone https://github.com/kubernetes-sigs/reference-docs ${REF_DOC_PATH} || true
+git -C ${REF_DOC_PATH} fetch --all --prune
+git -C ${REF_DOC_PATH} clean -fdx
+git -C ${REF_DOC_PATH} checkout -- .
+git -C ${REF_DOC_PATH} pull -- .
 
 # Checkout and clean
 cd "${KUBERNETES_PATH}"
-git fetch --all --prune
-git checkout -- .
-git checkout v${tag}
 
 # Generage API
-# https://kubernetes.io/docs/contribute/generate-ref-docs/kubernetes-api/
+# # https://kubernetes.io/docs/contribute/generate-ref-docs/kubernetes-api/
 cd "${REF_DOC_PATH}"
-git fetch --all --prune
-git checkout -- .
 export K8S_WEBROOT=${WEBSITE_PATH}
 export K8S_ROOT=${KUBERNETES_PATH}
 export K8S_RELEASE=${RELEASE}
